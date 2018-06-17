@@ -1,13 +1,17 @@
 <template>
     <div id="app">
-        <ribbon color="red">Work in progress</ribbon>
+        <ribbon color="red" position="top-left">Work in progress</ribbon>
 
         <preview-area/>
 
-        <img src="./assets/images/dog.gif">
-        <h1>{{ msg }}</h1>
-        <text-input :label="msg" v-model="msg" :isloading="isLoading"
-        @focus="isLoading = true" @blur="isLoading = false"/>
+        <div class="form-container">
+            <img src="./assets/images/dog.gif">
+            <h1>{{ msg }}</h1>
+            <div class="container" style="max-width: 25%;">
+            <text-input :label="msg" v-model="msg" :isloading="isLoading"
+            @focus="isLoading = true" @blur="isLoading = false"/>
+            </div>
+        </div>
 
         <page-footer/>
     </div>
@@ -39,5 +43,10 @@ export default {
 #app {
     font-family: Helvetica, Arial, sans-serif;
     text-align: center;
+}
+
+.form-container {
+    margin-bottom: 15px;
+    margin-top: 15px;
 }
 </style>

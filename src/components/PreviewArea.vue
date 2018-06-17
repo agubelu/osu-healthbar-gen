@@ -1,6 +1,7 @@
 <template>
     <section class="hero is-primary">
-        <div class="hero-body" id="canvas-hero">
+        <div :class="{'hero-body': true, 'lightson': lightsOn, 'lightsoff': !lightsOn}" id="canvas-hero">
+            <i id="lightsicon" class="fas fa-lightbulb" @click="toggleLights"></i>
             <div class="container">
                 <canvas id="layer-dummy" class="canvas-layer" width="1354" height="160" style="z-index: 0;"/>
                 <canvas id="layer0" class="canvas-layer canvas-drawable" width="1354" height="160" style="z-index: 0;"/>
@@ -14,20 +15,17 @@
 <script>
 export default {
 
-    mounted() {
-        function drawcircle(context, centerX, centerY, radius, color) {
-            context.beginPath();
-            context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
-            context.fillStyle = color;
-            context.fill();
-        }
-
-        for(var i = 0; i < 3; i++) {
-            let color = i == 0 ? 'black' : i == 1 ? 'red' : 'blue';
-            var ctx = document.getElementById(`layer${i}`).getContext('2d');
-            drawcircle(ctx, 200+i*20, 70, 50, color);
+    data() {
+        return {
+            lightsOn: true,
         }
     },
+
+    methods: {
+        toggleLights() {
+            this.lightsOn = !this.lightsOn;
+        }
+    }
     
 }
 </script>
@@ -35,7 +33,6 @@ export default {
 <style>
 #canvas-hero {
     padding: .7%;
-    /*background-color: #fff;*/
 }
 
 .canvas-layer {
@@ -48,5 +45,23 @@ export default {
     position: absolute;
     left: 0;
     top: 0;
+}
+
+#lightsicon {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 3vw;
+    cursor: pointer;
+}
+
+.lightsoff {
+    background-color: black;
+    color: white;
+}
+
+.lightson {
+    background-color: #e8e8e8;
+    color: black;
 }
 </style>
