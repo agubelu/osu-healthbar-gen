@@ -3,13 +3,9 @@
         <div class="columns">
             <div class="column">
                 <p>
-                    <span class="pointer" @click="openTab('https://twitter.com/agubelu')">
-                        <i class="fab fa-twitter"></i> <span class="underline">Twitter</span>
-                    </span>
+                    <i class="fab fa-twitter"></i> <a href="https://twitter.com/agubelu" target="_blank">Twitter</a>
                     &nbsp;|&nbsp;
-                    <span class="pointer" @click="openTab('https://osu.ppy.sh/forum/ucp.php?i=pm&mode=compose&u=4780236')">
-                        <i class="fa fa-envelope"></i> <span class="underline">Contact me</span>
-                    </span>
+                    <i class="fa fa-envelope"></i> <a href="https://osu.ppy.sh/forum/ucp.php?i=pm&mode=compose&u=4780236" target="_blank">Contact me</a>
                 </p>
             </div>
             <div class="column">
@@ -19,9 +15,7 @@
             </div>
             <div class="column">
                 <p>
-                    <span class="pointer" @click="openTab('https://github.com/agubelu/osu-healthbar-gen')">
-                        <span class="underline">View on GitHub</span> <i class="fab fa-github"></i>
-                    </span>
+                    <a href="https://github.com/agubelu/osu-healthbar-gen" target="_blank">View on GitHub</a> <i class="fab fa-github"></i>
                 </p>
             </div>
         </div>
@@ -29,17 +23,7 @@
 </template>
 
 <script>
-import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
-
-export default {
-
-    components: { FontAwesomeIcon },
-
-    methods: {
-        openTab(url) {
-            window.open(url, '_blank');
-        }
-    }
+export default { 
 
 }
 </script>
@@ -47,18 +31,16 @@ export default {
 <style>
 #footer {
     background-color: #e0e0e0;
-    padding: 1%;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 #footer > .container {
     max-width: 1500px !important;
 }
 
-.pointer {
-    cursor: pointer;
-}
-
-.underline {
+#footer a {
+    color: inherit;
     text-decoration: underline;
 }
 </style>
