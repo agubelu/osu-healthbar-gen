@@ -50,4 +50,8 @@ export default {
 label, p.help {
     text-align: left;
 }
+
+.label {
+    margin-bottom: 0 !important;
+}
 </style>
