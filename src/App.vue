@@ -4,38 +4,16 @@
 
         <preview-area/>
 
-        <div class="form-container">
-            <img src="./assets/images/dog.gif">
-            <h1>{{ msg }}</h1>
-            <div class="container" style="max-width: 25%;">
-            <text-input :label="msg" v-model="msg" :isloading="isLoading"
-            @focus="isLoading = true" @blur="isLoading = false"/>
-            <text-input :label="msg" v-model="msg" :isloading="isLoading"
-            @focus="isLoading = true" @blur="isLoading = false"/>
-            <text-input :label="msg" v-model="msg" :isloading="isLoading"
-            @focus="isLoading = true" @blur="isLoading = false"/>
-            <text-input :label="msg" v-model="msg" :isloading="isLoading"
-            @focus="isLoading = true" @blur="isLoading = false"/>
-            <text-input :label="msg" v-model="msg" :isloading="isLoading"
-            @focus="isLoading = true" @blur="isLoading = false"/>
-            <text-input :label="msg" v-model="msg" :isloading="isLoading"
-            @focus="isLoading = true" @blur="isLoading = false"/>
-            <text-input :label="msg" v-model="msg" :isloading="isLoading"
-            @focus="isLoading = true" @blur="isLoading = false"/>
-            <text-input :label="msg" v-model="msg" :isloading="isLoading"
-            @focus="isLoading = true" @blur="isLoading = false"/>
-            <text-input :label="msg" v-model="msg" :isloading="isLoading"
-            @focus="isLoading = true" @blur="isLoading = false"/>
-            <text-input :label="msg" v-model="msg" :isloading="isLoading"
-            @focus="isLoading = true" @blur="isLoading = false"/>
-            <text-input :label="msg" v-model="msg" :isloading="isLoading"
-            @focus="isLoading = true" @blur="isLoading = false"/>
-            <text-input :label="msg" v-model="msg" :isloading="isLoading"
-            @focus="isLoading = true" @blur="isLoading = false"/>
-            <text-input :label="msg" v-model="msg" :isloading="isLoading"
-            @focus="isLoading = true" @blur="isLoading = false"/>
-            <text-input :label="msg" v-model="msg" :isloading="isLoading"
-            @focus="isLoading = true" @blur="isLoading = false"/>
+        <div class="container" id="form-container">
+            <div class="columns">
+                <div class="column">
+                    <text-input label="Your osu! username:" iconleft="user"/>
+                    <text-input label="Text to print:" iconleft="pencil-alt"
+                    placeholder="Leave blank to print your username"/>
+                </div>
+                <div class="column">
+                    
+                </div>
             </div>
         </div>
 
@@ -69,10 +47,14 @@ export default {
 #app {
     font-family: Helvetica, Arial, sans-serif;
     text-align: center;
+    
 }
 
-.form-container {
-    margin-bottom: 15px;
-    margin-top: 15px;
+#form-container {
+    padding-left: 3vw;
+    padding-right: 3vw;
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+    background-color: white;
 }
 </style>

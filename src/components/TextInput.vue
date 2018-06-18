@@ -2,7 +2,7 @@
     <div class="field">
         <label v-if="label" class="label">{{ label }}</label>
         <div :class="{ 'control': true, 'has-icons-left': iconleft, 'has-icons-right': iconright, 'is-loading': isloading }">
-            <input :class="{ 'input': true, 'is-danger': error }" type="text"
+            <input :class="['input', errorstatus]" type="text"
                     :placeholder="placeholder" @focus="sendOnFocus" @blur="sendOnBlur"
                     :value="value" @input="$emit('input', $event.target.value)">
             <span v-if="iconleft" class="icon is-small is-left">
@@ -12,7 +12,7 @@
                 <font-awesome-icon :icon="iconright" />
             </span>
         </div>
-        <p v-if="error" class="help is-danger">{{ error }}</p>
+        <p v-if="errorstring" :class="['help', errorstatus]">{{ errorstring }}</p>
     </div>
 </template>
 
@@ -27,7 +27,8 @@ export default {
         iconright: { default: '' },
         isloading: { default: '' },
         value: { default: '' },
-        error: { default: '' },
+        errorstring: { default: '' },
+        errorstatus: { default: '' },
     },
 
     methods: {
@@ -46,5 +47,7 @@ export default {
 </script>
 
 <style>
-
+label, p.help {
+    text-align: left;
+}
 </style>

@@ -68,7 +68,7 @@ export default {
 }
 
 .lightson {
-    background-color: #e8e8e8;
+    background-color: #ecebeb;
     color: black;
 }
 </style>

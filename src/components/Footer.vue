@@ -30,7 +30,8 @@ export default {
 
 <style>
 #footer {
-    background-color: #e0e0e0;
+    margin-top: 5vh;
+    background-color: #ecebeb;
     padding-top: 10px;
     padding-bottom: 10px;
 }
