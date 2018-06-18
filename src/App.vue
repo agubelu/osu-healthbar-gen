@@ -38,6 +38,8 @@
 </template>
 
 <script>
+import Vue from 'vue'
+
 import Ribbon from './components/Ribbon.vue'
 import TextInput from './components/TextInput.vue'
 import PageFooter from './components/Footer.vue'
@@ -45,9 +47,13 @@ import PreviewArea from './components/PreviewArea.vue'
 import SelectInput from './components/SelectInput.vue'
 
 import countryList from './assets/scripts/country_list.js'
+import { loadFonts }  from './assets/scripts/fonts_utils.js'
+
+window.Event = new Vue();
 
 export default {
     name: "app",
+    components: { Ribbon, TextInput, PageFooter, PreviewArea, SelectInput },
 
     data() {
         return {
@@ -56,6 +62,8 @@ export default {
                 {value: 'old', name: 'Old'},
                 {value: 'new', name: 'Modern'},
             ],
+
+            fontList: [],
 
             countryOptions: countryList,
 
@@ -83,10 +91,13 @@ export default {
         }
     },
 
-    components: { Ribbon, TextInput, PageFooter, PreviewArea, SelectInput },
+    mounted() {
+        loadFonts();
+        Event.$on('newFontsReady', fonts => {
+            this.fontList = this.fontList.concat(fonts);
+        });
+    }
 };
-
-
 </script>
 
 <style>
