@@ -3,7 +3,7 @@
         <label v-if="label" class="label">{{ label }}</label>
         <div :class="{ 'control': true, 'has-icons-left': iconleft}">
             <div :class="['select', errorstatus]">
-                <select :value="value" @input="$emit('input', $event.target.value)">
+                <select :value="value" @input="$emit('input', $event.target.value)" :disabled="!enabled">
                     <option v-for="opt in options" :value="opt.value">
                         {{ opt.name }}
                     </option>
@@ -32,6 +32,7 @@ export default {
         errorstring: { default: '' },
         errorstatus: { default: '' },
         iconleft: { default: '' },
+        enabled: { default: true },
     },
 
 }
