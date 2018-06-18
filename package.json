@@ -13,6 +13,7 @@
         "@fortawesome/fontawesome": "^1.1.8",
         "@fortawesome/fontawesome-free-solid": "^5.0.13",
         "@fortawesome/vue-fontawesome": "0.0.23",
+        "axios": "^0.18.0",
         "bulma": "^0.7.1",
         "vue": "^2.5.11"
     },
