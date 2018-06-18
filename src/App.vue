@@ -44,6 +44,7 @@
 </template>
 
 <script>
+import 'bulma/css/bulma.min.css'
 import Ribbon from './components/Ribbon.vue'
 import TextInput from './components/TextInput.vue'
 import PageFooter from './components/Footer.vue'
