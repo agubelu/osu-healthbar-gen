@@ -59,6 +59,7 @@ export default {
     right: 15px;
     font-size: 3vw;
     cursor: pointer;
+    z-index: 1000;
 }
 
 .lightsoff {
