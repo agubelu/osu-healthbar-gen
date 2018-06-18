@@ -1,5 +1,5 @@
 <template>
-    <section class="hero is-primary">
+    <section id="section-hero" class="hero is-primary">
         <div :class="{'hero-body': true, 'lightson': lightsOn, 'lightsoff': !lightsOn}" id="canvas-hero">
             <i id="lightsicon" class="fas fa-lightbulb" @click="toggleLights"></i>
             <div class="container">
@@ -31,6 +31,12 @@ export default {
 </script>
 
 <style>
+#section-hero {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+}
+
 #canvas-hero {
     padding: .7%;
 }

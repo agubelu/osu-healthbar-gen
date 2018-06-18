@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <ribbon color="red" position="top-left">Work in progress</ribbon>
+        <ribbon color="red" position="bottom-left">Work in progress</ribbon>
 
         <preview-area/>
 
@@ -8,6 +8,32 @@
             <img src="./assets/images/dog.gif">
             <h1>{{ msg }}</h1>
             <div class="container" style="max-width: 25%;">
+            <text-input :label="msg" v-model="msg" :isloading="isLoading"
+            @focus="isLoading = true" @blur="isLoading = false"/>
+            <text-input :label="msg" v-model="msg" :isloading="isLoading"
+            @focus="isLoading = true" @blur="isLoading = false"/>
+            <text-input :label="msg" v-model="msg" :isloading="isLoading"
+            @focus="isLoading = true" @blur="isLoading = false"/>
+            <text-input :label="msg" v-model="msg" :isloading="isLoading"
+            @focus="isLoading = true" @blur="isLoading = false"/>
+            <text-input :label="msg" v-model="msg" :isloading="isLoading"
+            @focus="isLoading = true" @blur="isLoading = false"/>
+            <text-input :label="msg" v-model="msg" :isloading="isLoading"
+            @focus="isLoading = true" @blur="isLoading = false"/>
+            <text-input :label="msg" v-model="msg" :isloading="isLoading"
+            @focus="isLoading = true" @blur="isLoading = false"/>
+            <text-input :label="msg" v-model="msg" :isloading="isLoading"
+            @focus="isLoading = true" @blur="isLoading = false"/>
+            <text-input :label="msg" v-model="msg" :isloading="isLoading"
+            @focus="isLoading = true" @blur="isLoading = false"/>
+            <text-input :label="msg" v-model="msg" :isloading="isLoading"
+            @focus="isLoading = true" @blur="isLoading = false"/>
+            <text-input :label="msg" v-model="msg" :isloading="isLoading"
+            @focus="isLoading = true" @blur="isLoading = false"/>
+            <text-input :label="msg" v-model="msg" :isloading="isLoading"
+            @focus="isLoading = true" @blur="isLoading = false"/>
+            <text-input :label="msg" v-model="msg" :isloading="isLoading"
+            @focus="isLoading = true" @blur="isLoading = false"/>
             <text-input :label="msg" v-model="msg" :isloading="isLoading"
             @focus="isLoading = true" @blur="isLoading = false"/>
             </div>

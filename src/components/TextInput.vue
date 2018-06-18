@@ -2,7 +2,7 @@
     <div class="field">
         <label v-if="label" class="label">{{ label }}</label>
         <div :class="{ 'control': true, 'has-icons-left': iconleft, 'has-icons-right': iconright, 'is-loading': isloading }">
-            <input :class="{ 'input': true, 'is-danger': error }" type="text" 
+            <input :class="{ 'input': true, 'is-danger': error }" type="text"
                     :placeholder="placeholder" @focus="sendOnFocus" @blur="sendOnBlur"
                     :value="value" @input="$emit('input', $event.target.value)">
             <span v-if="iconleft" class="icon is-small is-left">
