@@ -38,7 +38,7 @@ export default {
 </script>
 
 <style>
-select {
-
+div.select, select {
+    width: 100%;
 }
 </style>
