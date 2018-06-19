@@ -15,6 +15,7 @@
         "@fortawesome/vue-fontawesome": "0.0.23",
         "axios": "^0.18.0",
         "bulma": "^0.7.1",
+        "jquery": "^3.3.1",
         "vue": "^2.5.11"
     },
     "browserslist": [
