@@ -55,8 +55,8 @@ export default {
 
 #lightsicon {
     position: absolute;
-    top: 15px;
-    right: 15px;
+    top: 1.5vh;
+    right: 1.5vh;
     font-size: 3vw;
     cursor: pointer;
     z-index: 1000;
