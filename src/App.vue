@@ -94,9 +94,9 @@ export default {
             if(this.loadedFontTier === 1) {
                 return tier1_fonts;
             } else if(this.loadedFontTier === 2) {
-                return tier1_fonts + tier2_fonts;
+                return tier1_fonts.concat(tier2_fonts);
             } else {
-                return tier1_fonts + tier2_fonts + tier3_fonts;
+                return tier1_fonts.concat(tier2_fonts, tier3_fonts);
             }
         },
     },
