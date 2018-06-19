@@ -24,12 +24,26 @@
                         </div>
                     </div>
                     
+                    <div class="columns is-grouped">
+                        <div class="column is-three-fifths">
+                            <font-select v-model="generatorData.selectedFont" :fonts="fontList"
+                                label="Font:" iconleft="font" :text="textShowFont"/>
+                        </div>
+                        <div class="column is-two-fifths">
+                            <label class="label">More fonts:</label>
+                            <button class="button is-link is-fullwidth" :disabled="loadedFontTier === 3"
+                            @click="loadedFontTier++;">
+                                {{ loadMoreFontsButtonMsg }}
+                            </button>
+                        </div>
+                    </div>
+
                     
 
                 </div>
 
                 <div class="column">
-                    <p v-for="font in fontList" :style="{'font-family': font}">{{ font }}</p>
+                    
                 </div>
             </div>
         </div>
@@ -40,12 +54,14 @@
 
 <script>
 import Vue from 'vue'
+import $ from "jquery"
 
 import Ribbon from './components/Ribbon.vue'
 import TextInput from './components/TextInput.vue'
 import PageFooter from './components/Footer.vue'
 import PreviewArea from './components/PreviewArea.vue'
 import SelectInput from './components/SelectInput.vue'
+import FontSelect from './components/FontSelect.vue'
 
 import countryList from './assets/scripts/country_list.js'
 import { addFontsToStyle, tier1_fonts, tier2_fonts, tier3_fonts } from './assets/scripts/fonts_utils.js'
@@ -54,7 +70,7 @@ window.Event = new Vue();
 
 export default {
     name: "app",
-    components: { Ribbon, TextInput, PageFooter, PreviewArea, SelectInput },
+    components: { Ribbon, TextInput, PageFooter, PreviewArea, SelectInput, FontSelect },
 
     data() {
         return {
@@ -72,6 +88,7 @@ export default {
                 text: '',
                 flagStyle: 'none',
                 country: null,
+                selectedFont: 'pneumati',
             }
         };
     },
@@ -90,6 +107,10 @@ export default {
             return this.generatorData.text || this.generatorData.username;
         },
 
+        textShowFont: function() {
+            return this.textToPrint || 'Lorem ipsum dolor sit amet';
+        },
+
         fontList: function() {
             if(this.loadedFontTier === 1) {
                 return tier1_fonts;
@@ -99,11 +120,24 @@ export default {
                 return tier1_fonts.concat(tier2_fonts, tier3_fonts);
             }
         },
+
+        loadMoreFontsButtonMsg: function() {
+            if(this.loadedFontTier === 1) {
+                return "Load more fonts";
+            } else if(this.loadedFontTier === 2) {
+                return "Load even more fonts";
+            } else {
+                return "All fonts loaded";
+            }
+        }
     },
 
     mounted() {
         // Create the <style> tag for the @font-face's
-        addFontsToStyle();
+        $(function() {
+            addFontsToStyle();
+        });
+
     },
 };
 </script>
