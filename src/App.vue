@@ -4,6 +4,7 @@
 
         <preview-area/>
 
+        <h1 class="title">osu! healthbar generator</h1>
         <div class="container" id="form-container">
             <div class="columns">
                 <div class="column">
@@ -117,5 +118,9 @@ export default {
 
 #country-div .column {
     padding-bottom: 0;
+}
+
+.title {
+    margin-top: 15px;
 }
 </style>

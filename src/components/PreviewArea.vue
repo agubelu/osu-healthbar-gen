@@ -33,6 +33,7 @@ export default {
 <style>
 #section-hero {
     position: sticky;
+    position: -webkit-sticky;
     top: 0;
     z-index: 5;
 }
@@ -55,9 +56,9 @@ export default {
 
 #lightsicon {
     position: absolute;
-    top: 1.5vh;
-    right: 1.5vh;
-    font-size: 3vw;
+    top: 1vh;
+    right: 1vh;
+    font-size: 3.3vw;
     cursor: pointer;
     z-index: 1000;
 }
