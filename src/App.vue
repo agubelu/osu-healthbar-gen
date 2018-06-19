@@ -29,7 +29,7 @@
                 </div>
 
                 <div class="column">
-                    
+                    <p v-for="font in fontList" :style="{'font-family': font}">{{ font }}</p>
                 </div>
             </div>
         </div>
@@ -48,7 +48,7 @@ import PreviewArea from './components/PreviewArea.vue'
 import SelectInput from './components/SelectInput.vue'
 
 import countryList from './assets/scripts/country_list.js'
-import { loadFonts }  from './assets/scripts/fonts_utils.js'
+import { addFontsToStyle, tier1_fonts, tier2_fonts, tier3_fonts } from './assets/scripts/fonts_utils.js'
 
 window.Event = new Vue();
 
@@ -64,9 +64,8 @@ export default {
                 {value: 'new', name: 'Modern'},
             ],
 
-            fontList: [],
-
             countryOptions: countryList,
+            loadedFontTier: 1,
 
             generatorData: {
                 username: '',
@@ -89,15 +88,23 @@ export default {
 
         textToPrint: function() {
             return this.generatorData.text || this.generatorData.username;
-        }
+        },
+
+        fontList: function() {
+            if(this.loadedFontTier === 1) {
+                return tier1_fonts;
+            } else if(this.loadedFontTier === 2) {
+                return tier1_fonts + tier2_fonts;
+            } else {
+                return tier1_fonts + tier2_fonts + tier3_fonts;
+            }
+        },
     },
 
     mounted() {
-        loadFonts();
-        Event.$on('newFontsReady', fonts => {
-            this.fontList = this.fontList.concat(fonts);
-        });
-    }
+        // Create the <style> tag for the @font-face's
+        addFontsToStyle();
+    },
 };
 </script>
 

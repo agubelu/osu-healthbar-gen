@@ -1,32 +1,22 @@
-import axios from 'axios'
+const tier1_fonts = ["pneumati", "aescrawl", "agencyb", "pdark", "edo", "plasdrip", "plain_black", "a36daysag", "pristina", "outersid", "acknowtt", "madscrwl", "arlrdbd", "saginawbold", "gothic", "freebsc_", "segoeprb", "ccaps", "gothicbi", "arial", "freescpt", "nsecthin", "neural", "comicsans", "a36daythk", "entplain", "circulat", "plasdrpe", "perbi___", "calibrib", "gilbi___", "nsecthck", "ccapshad", "chops___", "harlowsi", "mishmash", "phorfeis", "kickflip", "hillock", "ruritania", "a8bitlim", "seguili", "antquabi", "segoepr", "itckrist", "brushsci", "ariblk", "jmacscrl", "automati", "lamebrai"];
+const tier2_fonts = ["mtcorsva", "zoidal", "flipside", "pneutall", "segoeuib", "bradhitc", "refsan", "comici", "alphbeta", "hearts", "poorich", "ocraext", "a1942", "maian", "calibriz", "forte", "eraslght", "grudge", "editundo", "quantflt", "boltonitalicoutline", "bobcaygr", "a8bitlimo", "a18holes", "gothici", "lbritedi", "amplitud", "brlnsdb", "a8bitlimr", "pneuwide", "route_3", "persuasi", "papyrus", "mistral", "glassga", "thehardway_rmx", "zephyrea", "gil_____", "ariali", "pixlkrud", "bookosb", "corbelb", "broken_ghost", "rock", "erasdemi", "aesymatt", "arialnb", "homespun", "maturasc", "rambling", "bauhs93", "seguisb", "quarthck", "quantrnd", "easy_street_eps_bold", "lhandw", "rockb", "kalibers", "blox2", "handmeds", "corbelz", "zoetrope", "b2sq", "seguibli", "candarab", "oldengl", "detonate", "coopbl", "powdwrk5", "seguisbi", "neuralol", "segoeuiz", "lcd", "fbsbltc", "jawbrko1", "defused", "visitor1", "chiller", "weathers", "segoeuii", "chumbly", "zeldadxt", "yourcomp", "gabriola", "erasmd", "mudshake_83", "fradm", "quarthin", "bandless", "tcm_____", "registry", "vertiup2", "quacksal", "htowerti", "seguibl", "tindog", "grapple", "quadrtic", "mysteron", "calibrii", "unlearn2", "pseudo", "ravie", "alger", "rockbi", "hotel_coral_essex", "impact", "phorfeir", "pindwnxp", "bod_i", "trebucbd", "pertibd", "strande2", "gaposiss", "magnetob", "tindogit", "a8blimro", "gili____", "dayslater", "framd", "imposs", "chemrea", "zerovelo", "mimafuse", "frabk", "techniqu", "qlumpy", "rehearsp", "sliced_juice", "kaliberr", "lucid", "pulse_virgin", "bobcayge", "collects", "candaraz", "rocki", "vacantz", "tahomabd", "nominal", "tiza", "quantfh", "ataxiao", "the_poison", "minikstt", "ryuker", "consolai", "grudge2", "quartz", "bell", "tahoma", "showg", "latinwd", "tcbi____", "ramrod", "verdana", "brigadow", "ecliptic", "verdanaz", "hassle", "abusive_pencil", "zephyreg", "quaranti", "freaktur", "relapse", "candystr", "upheavtt", "coprgtb", "segoeuisl", "fullcomp", "trebuc", "aerosol", "fbsbltc2", "xipital", "tcmi____", "quandary", "obstacle", "yoshisst", "macropsi", "visitor2", "techniqo", "framdit", "simplto2", "bod_b", "gilc____", "rehearsc", "trebucbi", "galvaniz", "qlumpysh", "pindownp", "embosst2", "chemreb", "rusted_plastic", "rocc____", "courbd", "verdanab", "curlz___", "elsewhe2", "zallmancaps", "quadrcal", "constanz"];
+const tier3_fonts = ["nostalgi", "vigilanc", "pindown", "undrscr2", "quantrh", "a1015sn", "consolab", "regenera", "reasonsh", "baskvill", "jawbrko2", "binchrt", "requiem", "bewildet", "bandmess", "bewilder", "offkiltl", "britanic", "chintzys", "edunline", "bumped", "cambriaz", "tcb_____", "gillubcd", "gyneric", "obloquys", "mima4x4o", "calistb", "zenith", "bendable", "vantage", "notqr", "garait", "exagger8", "quanttap", "pindwnx", "handmedo", "yonder", "kirbyss", "verdanai", "ruritania-outline", "crkdwno1", "lucid2", "tragic2", "euphor3d", "zirconia", "pincers", "georgiai", "roughday", "embosst1", "moronmis", "ubiquity", "gravitat", "elephnti", "tcceb", "century", "cambriab", "trebucit", "tipo", "overhead", "constan", "a3dlet", "spheroid", "redundan", "techover", "qbicle1", "hyperion", "dephun2", "gommogra", "Strande2", "ataxia", "bod_cbi", "elsewher", "raydiat2", "spheroix", "aftermat", "embossed_black_normal", "xtrusion", "unlearne", "thurston_erc_002", "backlash", "easy_street_alt_eps", "dynamic", "kaliberx", "embosst3", "vindicti", "saunder", "lightout", "yesterda", "tccm____", "jupiterc", "bernhc", "timesbi", "wobbly", "kinkaid", "infroman", "vertigup", "uwch", "harngton", "nucleus", "unanimoi", "timesbd", "gara", "qbicle4", "encapsul", "Unxgala", "tccb____", "zirccube", "schlbkb", "mosaic_o", "easy_street_eps", "binxchr", "orbicula", "offkiltr", "timesi", "seguisli", "b2sqol2", "gyneric3", "tempsitc", "chintzy", "jawbreak", "collecto", "setbackt", "opiated", "edundot", "bocuma", "lucid2o", "georgia", "unrespon", "broadw", "charles_s", "the_great_thunder", "dented", "jeopardt", "rehearso", "lucido", "times", "a4shadowo", "gr8higts", "slenmini", "monkphon", "brigadom", "obloquyo", "death_font", "sqroute", "jawbhard", "hbevel", "socialanimal", "elephnt", "yielding", "weatherd", "Blox2", "gaposiso", "jargon", "a4shadow", "janken", "underwhe", "galapogo", "jeopardi", "couri", "extracti", "stencil", "Condui2i", "qbicle2", "inktank", "califr", "ilits", "nanosecw", "goudosb", "kurvatur", "lynx", "underwood_etendu_1913", "ftltlt", "collecrs", "ravcater", "licostrg", "united", "bloktilt", "lethargi", "supragc", "genotyrs", "gartentika", "telephas", "jokerman", "crkdwno2", "bocumang", "crackdr2", "castelar", "encappln", "xeroxmal", "mima4x4i", "queasyol", "jagged", "obstacll", "lakeshor", "revert", "crkdownr", "swirled2", "jaspers", "engr", "gather", "Tragic2", "forcible", "distorted_and_scratchy", "kingthings_whizzbang", "imprisha", "reason", "cour", "queasy", "Splatz2", "fidgety", "quillexs", "graviseg", "a1015snr", "rotund", "larkspur", "tsextolo", "dashdot", "defeqto", "decrepit", "condui2i", "cleavttr", "aspartam", "numskull", "slenstub", "yearend", "withstan", "bocumaad", "panhead_", "unxgalaw", "inkswipe", "hyde", "gestures", "variance", "unanimo", "unxgala", "inevitab", "whipsnap", "turmoil", "lowdown", "Unxgalo", "sideways", "underwho", "whatever", "tsextols", "sequence", "vertigo", "bod_r", "spastic2", "kingthings_willowless", "glecb", "docteur_atomic", "urcompi", "rotundo", "genotyps", "jasper", "arthriti", "falsepos", "stagnati", "nymonak", "b2sqol1", "malapropism", "clasict2", "entlayra", "supragl", "tetri", "darkside", "bod_cb", "keyrialt", "tonik", "bleakseg", "qbicle3", "mincer", "ravaged2", "jekyll", "claw1", "lyneousl", "califb", "clasict1", "felixti", "amalgama", "combuspl", "vertigo2", "naughts", "bocumade", "dblayer4", "entangle", "Swirled2", "timeno__", "frizzed", "conduit", "underscr", "falsposr", "gyrose", "minikott", "joltcaff", "waver", "kingthings_willow", "thwart", "cutter", "quillexo", "Unxgalwo", "euphoric", "gyroresh", "slenderw", "mobilize", "hairball", "konector", "combustw", "wagerwon", "Unxgalaw", "collecro", "spacious", "mimaalt2", "bocumaba", "unxgalo", "volatil1", "combusii", "sarcasti", "dyerseve", "sclnmaze", "wager", "amalgamo", "genotyrh", "volatil2", "graveyrd", "gesturet", "grotesq", "dblayer1", "irritate", "keyridge", "xhume", "blonibld", "intersc", "enthuses", "granular", "interso", "syntheti", "acidrefl", "vanished", "hackslsh", "inertia", "conduit2", "unxgalwo", "draggle", "intersec", "mimaalt1", "wincing", "syracuse", "spaciouo", "dblbogey", "splatz2", "gesturts", "fasciitw", "bknuckss", "wigsquig", "syndrome", "knot", "gathrgap", "revertro", "blackoni", "blonirex", "compc3o", "kataacti", "xmaslght", "upraise", "dblayer2", "genotyph", "gesture", "scalines", "wyvernwi", "gosebmp2", "lyneous", "compc2o", "compc2s", "dastardl", "urcompo", "gasping", "compc3s", "weaver", "fasciism", "wyvernww", "wagerlos", "bknuckst", "compc1s", "colonna", "koneerie", "konecto1", "claw2", "enthuse", "entlayrb", "combusti", "slender", "katainac", "discorda", "waywards", "dystorqu", "wayward", "dyphusio", "compc1o", "combustt", "konecto2", "fascii", "gosebmps", "gyrosesq", "fasciisc", "Ruritania", "brassknu", "dblayer3", "fasciicr", "draggleo"];
 
-const fontsLocation = "https://agube.lu/generator/css/fonts/";
-const fontsAPI = "https://agube.lu/api/fonts";
+const fontsLocation = "https://agube.lu/generator/fonts/";
 
-function loadFonts(extra = false) {
+function addFontsToStyle() {
     var newStyle = document.createElement('style');
     document.head.appendChild(newStyle);
     newStyle.setAttribute("id", "style-fonts");
 
-    axios.get(fontsAPI + (extra ? "?extra" : ""))
-        .then(response => {
-            var fonts = response.data;
-            fonts.forEach(addFont);
-            Event.$emit('newFontsReady', fonts);
-        })
-        .catch(error => {
-            alert("Error retrieving fonts: " + error);
-        });
+    for(let fontName of [].concat(tier1_fonts, tier2_fonts, tier3_fonts)) {
+        newStyle.appendChild(document.createTextNode(`
+            @font-face {
+                font-family: "${fontName}";
+                src: url('${fontsLocation}${fontName}.ttf');
+            }
+        `));
+    }
 }
 
-function addFont(fontName) {
-    var style = document.getElementById('style-fonts');
-    style.appendChild(document.createTextNode(`
-        @font-face {
-            font-family: "${fontName}";
-            src: url('${fontsLocation}${fontName}.ttf');
-        }
-    `));
-}
-
-export {addFont, loadFonts};
+export { addFontsToStyle, tier1_fonts, tier2_fonts, tier3_fonts };
