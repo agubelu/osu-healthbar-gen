@@ -21,7 +21,6 @@
                     <i class="fas fa-plus"></i>
                 </button>
             </div>
-            <p v-if="errorstring" :class="['help', errorstatus]">{{ errorstring }}</p>
         </div>
     </div>
 </template>

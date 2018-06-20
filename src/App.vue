@@ -54,7 +54,7 @@
                         <div class="column is-three-quarters">
                             <font-select v-model="generatorFormData.selectedFont"
                                          :fonts="fontList"
-                                         :text="textShowFont || 'Lorem ipsum dolor sit amet'"
+                                         :text="textToPrint || 'Lorem ipsum dolor sit amet'"
                                          label="Font:"
                                          iconleft="font" 
                                          @loadMoreFonts="onLoadMoreFonts" />
@@ -88,9 +88,7 @@
                             </div>
                             <div class="tile is-parent">
                                 <!-- Element 2 -->
-                                <div class="tile is-child box">
-
-                                </div>
+                                <tile-color-picker/>
                             </div>
                         </div>
 
@@ -137,7 +135,6 @@
 
 <script>
 import Vue from 'vue'
-import $ from "jquery"
 
 import TextInput from './components/TextInput.vue'
 import NumberInput from './components/NumberInput.vue'
@@ -145,6 +142,7 @@ import PageFooter from './components/Footer.vue'
 import PreviewArea from './components/PreviewArea.vue'
 import SelectInput from './components/SelectInput.vue'
 import FontSelect from './components/FontSelect.vue'
+import TileColorPicker from './components/TileColorPicker.vue'
 
 import countryList from './assets/scripts/country_list.js'
 import { addFontsToStyle, tier1_fonts, tier2_fonts, tier3_fonts } from './assets/scripts/fonts_utils.js'
@@ -154,7 +152,7 @@ window.Event = new Vue();
 export default {
     name: "app",
     components: { TextInput, PageFooter, PreviewArea, SelectInput,
-                    NumberInput, FontSelect, },
+                  NumberInput, FontSelect, TileColorPicker },
 
     data() {
         return {
@@ -262,9 +260,10 @@ export default {
     },
 
     mounted() {
-        // Create the <style> tag for the @font-face's
-        // We bind it to onReady to make the fonts load after everything is ready
+        
         $(function() {
+            // Create the <style> tag for the @font-face's
+            // We bind it to onReady to make the fonts load after everything is ready
             addFontsToStyle();
         });
 

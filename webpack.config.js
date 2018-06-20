@@ -55,7 +55,7 @@ module.exports = {
             filename: path.resolve(__dirname, "dist/index.html"),
             template: path.resolve(__dirname, "index_template.html"),
             favicon: "src/assets/favicon.ico"
-        })
+        }),
     ],
 
     resolve: {
