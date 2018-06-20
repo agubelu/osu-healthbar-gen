@@ -13,42 +13,57 @@
                     <!-- Username and avatar shape -->
                     <div class="columns">
                         <div class="column is-three-fifths">
-                            <text-input label="Your osu! username:" iconleft="user" 
-                                v-model="generatorData.username" :errorstatus="usernameInputStatus"/>
+                            <text-input v-model="generatorFormData.username"
+                                        :errorstatus="formStatus.usernameInputStatus"
+                                        label="Your osu! username:" 
+                                        iconleft="user" />
                         </div>
                         <div class="column is-two-fifths">
-                            <select-input v-model="generatorData.avatarShape" :options="avatarStyleOptions" 
-                                iconleft="user-circle" label="Avatar style:"/>
+                            <select-input v-model="generatorFormData.avatarShape"
+                                          :options="selectOptions.avatarStyleOptions" 
+                                          iconleft="user-circle"    
+                                          label="Avatar style:" />
                         </div>
                     </div>
                     
                     <!-- Text to print -->
-                    <text-input label="Text to print:" iconleft="pencil-alt" 
-                        v-model="generatorData.text"
-                        placeholder="Leave blank to print your username"/>
+                    <text-input v-model="generatorFormData.text"
+                                label="Text to print:"
+                                iconleft="pencil-alt" 
+                                placeholder="Leave blank to print your username" />
 
                     <!-- Flag style and country -->
                     <div class="columns" id="country-div">
                         <div class="column is-two-fifths">
-                            <select-input v-model="generatorData.flagStyle" :options="flagStyleOptions" 
-                                iconleft="flag" label="Flag style:"/>
+                            <select-input v-model="generatorFormData.flagStyle"
+                                          :options="selectOptions.flagStyleOptions" 
+                                          iconleft="flag"
+                                          label="Flag style:" />
                         </div>
                         <div class="column is-three-fifths">
-                            <select-input v-model="generatorData.country" :options="countryOptions" 
-                            :enabled="countrySelectorEnabled" label="Country:" iconleft="globe"/>
+                            <select-input v-model="generatorFormData.country"
+                                          :options="selectOptions.countryOptions" 
+                                          :enabled="countrySelectorEnabled"
+                                          label="Country:"
+                                          iconleft="globe" />
                         </div>
                     </div>
                     
                     <!-- Font and font size -->
                     <div class="columns is-grouped">
                         <div class="column is-three-quarters">
-                            <font-select v-model="generatorData.selectedFont" :fonts="fontList"
-                                label="Font:" iconleft="font" :text="textShowFont"
-                                @loadMoreFonts="onLoadMoreFonts"/>
+                            <font-select v-model="generatorFormData.selectedFont"
+                                         :fonts="fontList"
+                                         :text="textShowFont || 'Lorem ipsum dolor sit amet'"
+                                         label="Font:"
+                                         iconleft="font" 
+                                         @loadMoreFonts="onLoadMoreFonts" />
                         </div>
                         <div class="column is-one-quarter">
-                            <number-input label="Font size:" iconleft="sort-numeric-down" 
-                                minval="1" v-model="generatorData.fontSize"/>
+                            <number-input v-model="generatorFormData.fontSize"
+                                          label="Font size:"
+                                          iconleft="sort-numeric-down" 
+                                          minval="1" />
                         </div>
                     </div>
                 </div>
@@ -64,9 +79,11 @@
                             <div class="tile is-parent is-vertical">
                                 <!-- Element 1 -->
                                 <div class="tile is-child">
-                                    <select-input v-model="colorPreset" :options="presetStyleOptions" 
-                                                  iconleft="paint-brush" label="Color theme:"
-                                                  errorstring="Click any color to edit it"/>
+                                    <select-input v-model="generatorFormData.colorTheme" 
+                                                  :options="selectOptions.presetStyleOptions" 
+                                                  iconleft="paint-brush"
+                                                  label="Color theme:"
+                                                  errorstring="Click any color to edit it" />
                                 </div>
                             </div>
                             <div class="tile is-parent">
@@ -136,101 +153,91 @@ window.Event = new Vue();
 
 export default {
     name: "app",
-    components: { 
-                    TextInput,
-                    PageFooter,
-                    PreviewArea,
-                    SelectInput,
-                    NumberInput,
-                    FontSelect,
-                },
+    components: { TextInput, PageFooter, PreviewArea, SelectInput,
+                    NumberInput, FontSelect, },
 
     data() {
         return {
 
-            usernameInputStatus: "is-focused",
-
-            flagStyleOptions: [
-                {value: 'none', name: 'No flag'},
-                {value: 'old', name: 'Old'},
-                {value: 'new', name: 'Modern'},
-            ],
-
-            avatarStyleOptions: [
-                {value: 'circle', name: 'Circle'},
-                {value: 'square', name: 'Square'},
-                {value: 'none', name: 'No avatar'},
-            ],
-
-            presetStyleOptions: [
-                {value: 'blue', name: 'Blue'},
-                {value: 'red', name: 'Red'},
-                {value: 'yellow', name: 'Yellow'},
-                {value: 'green', name: 'Green'},
-                {value: 'orange', name: 'Orange'},
-                {value: 'purple', name: 'Purple'},
-                {value: 'pink', name: 'Pink'},
-                {value: 'brown', name: 'Brown'},
-                {value: 'white', name: 'White'},
-            ],
-
-            countryOptions: countryList,
-            loadedFontTier: 1,
-            colorPreset: 'blue',
-
-            generatorData: {
+            // Holds all raw values from the form
+            generatorFormData: {
                 username: '',
                 avatarShape: 'circle',
                 text: '',
                 flagStyle: 'none',
-                country: null,
+                country: '',
                 selectedFont: 'pneumati',
                 fontSize: 20,
+                colorTheme: 'blue',
+            },
 
-            }
+            // Variables to control the form status
+            formStatus: {
+                usernameInputStatus: "is-focused",
+                loadedFontTier: 1,
+            },
+
+            // All options for the diferent <select> inputs
+            selectOptions: {
+                countryOptions: countryList,
+                flagStyleOptions: [
+                    {value: 'none', name: 'No flag'},
+                    {value: 'old', name: 'Old'},
+                    {value: 'new', name: 'Modern'},
+                ],
+                avatarStyleOptions: [
+                    {value: 'circle', name: 'Circle'},
+                    {value: 'square', name: 'Square'},
+                    {value: 'none', name: 'No avatar'},
+                ],
+                presetStyleOptions: [
+                    {value: 'blue', name: 'Blue'},
+                    {value: 'red', name: 'Red'},
+                    {value: 'yellow', name: 'Yellow'},
+                    {value: 'green', name: 'Green'},
+                    {value: 'orange', name: 'Orange'},
+                    {value: 'purple', name: 'Purple'},
+                    {value: 'pink', name: 'Pink'},
+                    {value: 'brown', name: 'Brown'},
+                    {value: 'white', name: 'White'},
+                ],
+            },
+
         };
     },
     
     computed: {
+        // Determines whether the country selector is active or not
         countrySelectorEnabled: function() {
-            return this.generatorData.flagStyle !== 'none';
+            return this.generatorFormData.flagStyle !== 'none';
         },
 
+        // Returns the selected country or none if the flag style is set to none
         selectedCountry: function() {
-            return this.generatorData.flagStyle === 'none' 
-                   ? null : this.generatorData.country; 
+            return this.generatorFormData.flagStyle === 'none' 
+                   ? null : this.generatorFormData.country; 
         },
 
+        // Returns the text that should be printed in the healthbar
         textToPrint: function() {
-            return this.generatorData.text || this.generatorData.username;
+            return this.generatorFormData.text || this.generatorFormData.username;
         },
 
-        textShowFont: function() {
-            return this.textToPrint || 'Lorem ipsum dolor sit amet';
-        },
-
+        // Returns the font list based on the font tier currently loaded
         fontList: function() {
-            if(this.loadedFontTier === 1) {
+            var loadedTier = this.formStatus.loadedFontTier;
+            if(loadedTier === 1) {
                 return tier1_fonts;
-            } else if(this.loadedFontTier === 2) {
+            } else if(loadedTier === 2) {
                 return tier1_fonts.concat(tier2_fonts);
             } else {
                 return tier1_fonts.concat(tier2_fonts, tier3_fonts);
             }
         },
 
-        loadMoreFontsButtonMsg: function() {
-            if(this.loadedFontTier === 1) {
-                return "Load more fonts";
-            } else if(this.loadedFontTier === 2) {
-                return "Load even more fonts";
-            } else {
-                return "All fonts loaded";
-            }
-        },
-
+        // Returns the confirm message for the 'load more fonts' button
         loadMoreFontsAlertMsg: function() {
-            return this.loadedFontTier === 1 ?
+            return this.formStatus.loadedFontTier === 1 ?
             "This will download 200 aditional fonts, with a total size of around ~25MB" :
             "This will download 400 aditional fonts, with a total size of around ~35MB";
         }
@@ -238,23 +245,25 @@ export default {
 
     methods: {
         onLoadMoreFonts() {
-            if(confirm(this.loadMoreFontsAlertMsg)) {
-                var button = $("#button-load-fonts");
+            if(!confirm(this.loadMoreFontsAlertMsg)) return;
+            
+            var button = $("#button-load-fonts");
+            button.toggleClass("is-loading");
+            this.formStatus.loadedFontTier++;
+
+            setTimeout(() => {
                 button.toggleClass("is-loading");
-                this.loadedFontTier++;
-                setTimeout(() => {
-                    button.toggleClass("is-loading");
-                    if(this.loadedFontTier === 3) {
-                        $("#button-load-fonts").attr("disabled", true);
-                        $("#button-load-fonts").toggleClass("is-link");
-                    }
-                }, 1000);
-            }
-        }
+                if(this.formStatus.loadedFontTier === 3) {
+                    $("#button-load-fonts").attr("disabled", true);
+                    $("#button-load-fonts").toggleClass("is-link");
+                }
+            }, 1500);
+        },
     },
 
     mounted() {
         // Create the <style> tag for the @font-face's
+        // We bind it to onReady to make the fonts load after everything is ready
         $(function() {
             addFontsToStyle();
         });
