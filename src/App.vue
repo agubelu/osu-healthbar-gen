@@ -9,35 +9,53 @@
             <div class="columns">
                 <div class="column">
 
-                    <text-input label="Your osu! username:" iconleft="user" v-model="generatorData.username"/>
-                    <text-input label="Text to print:" iconleft="pencil-alt" v-model="generatorData.text"
+                    <!-- Username and avatar shape -->
+                    <div class="columns">
+                        <div class="column is-three-fifths">
+                            <text-input label="Your osu! username:" iconleft="user" 
+                                v-model="generatorData.username"/>
+                        </div>
+                        <div class="column is-two-fifths">
+                            <select-input v-model="generatorData.avatarShape" :options="avatarStyleOptions" 
+                                iconleft="user-circle" label="Avatar style:"/>
+                        </div>
+                    </div>
+                    
+                    <!-- Text to print -->
+                    <text-input label="Text to print:" iconleft="pencil-alt" 
+                        v-model="generatorData.text"
                         placeholder="Leave blank to print your username"/>
 
+                    <!-- Flag style and country -->
                     <div class="columns" id="country-div">
                         <div class="column is-two-fifths">
                             <select-input v-model="generatorData.flagStyle" :options="flagStyleOptions" 
                                 iconleft="flag" label="Flag style:"/>
                         </div>
                         <div class="column is-three-fifths">
-                            <select-input v-model="generatorData.country" :options="countryOptions" :enabled="countrySelectorEnabled"
-                                label="Country:" iconleft="globe"/>
+                            <select-input v-model="generatorData.country" :options="countryOptions" 
+                            :enabled="countrySelectorEnabled" label="Country:" iconleft="globe"/>
                         </div>
                     </div>
                     
+                    <!-- Font and font size -->
                     <div class="columns is-grouped">
-                        <div class="column is-three-fifths">
+                        <div class="column is-three-quarters">
                             <font-select v-model="generatorData.selectedFont" :fonts="fontList"
                                 label="Font:" iconleft="font" :text="textShowFont"/>
                         </div>
-                        <div class="column is-two-fifths">
-                            <label class="label">More fonts:</label>
-                            <button class="button is-link is-fullwidth" id="button-load-fonts"
-                            @click="onLoadMoreFonts" :disabled="loadedFontTier === 3">
-                                {{ loadMoreFontsButtonMsg }}
-                            </button>
+                        <div class="column is-one-quarter">
+                            <number-input label="Font size:" iconleft="sort-numeric-down" 
+                                minval="1" v-model="generatorData.fontSize"/>
                         </div>
                     </div>
 
+                    <!-- More fonts button -->
+                    <label class="label">More fonts:</label>
+                    <button class="button is-link is-fullwidth" id="button-load-fonts"
+                        @click="onLoadMoreFonts" :disabled="loadedFontTier === 3">
+                            {{ loadMoreFontsButtonMsg }}
+                    </button>
                     
 
                 </div>
@@ -58,6 +76,7 @@ import $ from "jquery"
 
 import Ribbon from './components/Ribbon.vue'
 import TextInput from './components/TextInput.vue'
+import NumberInput from './components/NumberInput.vue'
 import PageFooter from './components/Footer.vue'
 import PreviewArea from './components/PreviewArea.vue'
 import SelectInput from './components/SelectInput.vue'
@@ -70,7 +89,15 @@ window.Event = new Vue();
 
 export default {
     name: "app",
-    components: { Ribbon, TextInput, PageFooter, PreviewArea, SelectInput, FontSelect },
+    components: { 
+                    Ribbon,
+                    TextInput,
+                    PageFooter,
+                    PreviewArea,
+                    SelectInput,
+                    NumberInput,
+                    FontSelect,
+                },
 
     data() {
         return {
@@ -80,15 +107,23 @@ export default {
                 {value: 'new', name: 'Modern'},
             ],
 
+            avatarStyleOptions: [
+                {value: 'circle', name: 'Circle'},
+                {value: 'square', name: 'Square'},
+                {value: 'none', name: 'No avatar'},
+            ],
+
             countryOptions: countryList,
             loadedFontTier: 1,
 
             generatorData: {
                 username: '',
+                avatarShape: 'circle',
                 text: '',
                 flagStyle: 'none',
                 country: null,
                 selectedFont: 'pneumati',
+                fontSize: 20,
             }
         };
     },
