@@ -88,7 +88,7 @@
                             </div>
                             <div class="tile is-parent">
                                 <!-- Element 2 -->
-                                <tile-color-picker/>
+                                <tile-color-picker v-model="colortest"/>
                             </div>
                         </div>
 
@@ -156,6 +156,8 @@ export default {
 
     data() {
         return {
+
+            colortest: '#DADADA',
 
             // Holds all raw values from the form
             generatorFormData: {

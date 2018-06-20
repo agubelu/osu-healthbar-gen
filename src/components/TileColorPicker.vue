@@ -1,6 +1,6 @@
 <template>
-    <div class="tile is-child box" :id="componentId" :style="{ 'background-color': value }" @click="onclicc">
-        <input class="color">{{ text }}
+    <div class="tile is-child box trigger" :id="componentId" :style="{ 'background-color': value }">
+        
     </div>
 </template>
 
@@ -8,29 +8,35 @@
 export default {
 
     props: {
-        value: { default: '#BEDEAD' },
+        value: { default: '' },
         text: { default: 'Sample text' },
     },
 
     computed: {
         componentId: function() {
-            return this.text.toLowerCase().replace(" ", "-");
+            return 'picker-' + this.text.toLowerCase().replace(" ", "-");
         }
     },
 
-    methods: {
-        onclicc() {
-            alert("Benis");
-        }
+    mounted() {
+        const thisComponent = this;
+        $(`.trigger`).colorPicker({
+            opacity: false,
+            cssAddon:
+                '.cp-disp {padding:10px; margin-bottom:6px; font-size:19px; height:20px; line-height:20px}' +
+                '.cp-xy-slider {width:200px; height:200px;}' +
+                '.cp-xy-cursor {width:16px; height:16px; border-width:2px; margin:-8px}' +
+                '.cp-z-slider {height:200px; width:40px;}' +
+                '.cp-z-cursor {border-width:8px; margin-top:-8px;}' +
+                '.cp-alpha {height:40px;}' +
+                '.cp-alpha-cursor {border-width:8px; margin-left:-8px;}',
+            renderCallback: function(elem, toggled) {
+                if(toggled === undefined) {
+                    thisComponent.$emit('input', '#' + this.color.colors.HEX);
+                }
+            }
+        });
     }
-
 }
 
-$(function() {
-    $(`.color`).colorPicker();
-});
 </script>
-
-<style>
-
-</style>
