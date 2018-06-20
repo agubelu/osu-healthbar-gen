@@ -6,7 +6,9 @@
         <h1 class="title">osu! healthbar generator</h1>
         <div class="container" id="form-container">
             <div class="columns">
-                <div class="column">
+
+                <!-- Left column -->
+                <div class="column" id="column-left">
 
                     <!-- Username and avatar shape -->
                     <div class="columns">
@@ -51,8 +53,60 @@
                     </div>
                 </div>
 
-                <div class="column">
-                    
+
+                <!-- Right column -->
+                <div class="column" id="column-right">
+                    <div class="tile is-ancestor is-vertical">
+
+                        <!-- Row 1 -->
+                        <div class="tile">
+                            <div class="tile is-parent is-vertical">
+                                <!-- Element 1 -->
+                                <div class="tile is-child box">
+
+                                </div>
+                            </div>
+                            <div class="tile is-parent">
+                                <!-- Element 2 -->
+                                <div class="tile is-child box">
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Row 2 -->
+                        <div class="tile">
+                            <div class="tile is-parent is-vertical">
+                                <!-- Element 3 -->
+                                <div class="tile is-child box">
+
+                                </div>
+                            </div>
+                            <div class="tile is-parent">
+                                <!-- Element 4 -->
+                                <div class="tile is-child box">
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Row 3 -->
+                        <div class="tile">
+                            <div class="tile is-parent is-vertical">
+                                <!-- Element 5 -->
+                                <div class="tile is-child box">
+
+                                </div>
+                            </div>
+                            <div class="tile is-parent">
+                                <!-- Element 6 -->
+                                <div class="tile is-child box">
+
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
                 </div>
             </div>
         </div>
@@ -213,5 +267,13 @@ export default {
 
 .title {
     margin-top: 15px;
+}
+
+.is-ancestor {
+    height: 100%;
+}
+
+#column-right {
+    padding-bottom: 0;
 }
 </style>
