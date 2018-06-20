@@ -31,8 +31,8 @@
                         </div>
                         <div class="column is-two-fifths">
                             <label class="label">More fonts:</label>
-                            <button class="button is-link is-fullwidth" :disabled="loadedFontTier === 3"
-                            @click="loadedFontTier++;">
+                            <button class="button is-link is-fullwidth" id="button-load-fonts"
+                            @click="onLoadMoreFonts" :disabled="loadedFontTier === 3">
                                 {{ loadMoreFontsButtonMsg }}
                             </button>
                         </div>
@@ -128,6 +128,23 @@ export default {
                 return "Load even more fonts";
             } else {
                 return "All fonts loaded";
+            }
+        },
+
+        loadMoreFontsAlertMsg: function() {
+            return this.loadedFontTier === 1 ?
+            "This will download 200 aditional fonts, with a total size of around ~25MB" :
+            "This will download 400 aditional fonts, with a total size of around ~35MB";
+        }
+    },
+
+    methods: {
+        onLoadMoreFonts() {
+            if(confirm(this.loadMoreFontsAlertMsg)) {
+                var button = $("#button-load-fonts");
+                button.toggleClass("is-loading");
+                this.loadedFontTier++;
+                setTimeout(() => button.toggleClass("is-loading"), 1000);
             }
         }
     },
