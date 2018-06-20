@@ -53,6 +53,7 @@
                     </div>
                 </div>
 
+                <div class="is-divider-vertical"></div>
 
                 <!-- Right column -->
                 <div class="column" id="column-right">
@@ -62,8 +63,10 @@
                         <div class="tile">
                             <div class="tile is-parent is-vertical">
                                 <!-- Element 1 -->
-                                <div class="tile is-child box">
-
+                                <div class="tile is-child">
+                                    <select-input v-model="colorPreset" :options="presetStyleOptions" 
+                                                  iconleft="paint-brush" label="Color theme:"
+                                                  errorstring="Click any color to edit it"/>
                                 </div>
                             </div>
                             <div class="tile is-parent">
@@ -159,8 +162,21 @@ export default {
                 {value: 'none', name: 'No avatar'},
             ],
 
+            presetStyleOptions: [
+                {value: 'blue', name: 'Blue'},
+                {value: 'red', name: 'Red'},
+                {value: 'yellow', name: 'Yellow'},
+                {value: 'green', name: 'Green'},
+                {value: 'orange', name: 'Orange'},
+                {value: 'purple', name: 'Purple'},
+                {value: 'pink', name: 'Pink'},
+                {value: 'brown', name: 'Brown'},
+                {value: 'white', name: 'White'},
+            ],
+
             countryOptions: countryList,
             loadedFontTier: 1,
+            colorPreset: 'blue',
 
             generatorData: {
                 username: '',
@@ -170,6 +186,7 @@ export default {
                 country: null,
                 selectedFont: 'pneumati',
                 fontSize: 20,
+
             }
         };
     },
