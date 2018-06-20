@@ -41,22 +41,14 @@
                     <div class="columns is-grouped">
                         <div class="column is-three-quarters">
                             <font-select v-model="generatorData.selectedFont" :fonts="fontList"
-                                label="Font:" iconleft="font" :text="textShowFont"/>
+                                label="Font:" iconleft="font" :text="textShowFont"
+                                @loadMoreFonts="onLoadMoreFonts"/>
                         </div>
                         <div class="column is-one-quarter">
                             <number-input label="Font size:" iconleft="sort-numeric-down" 
                                 minval="1" v-model="generatorData.fontSize"/>
                         </div>
                     </div>
-
-                    <!-- More fonts button -->
-                    <label class="label">More fonts:</label>
-                    <button class="button is-link is-fullwidth" id="button-load-fonts"
-                        @click="onLoadMoreFonts" :disabled="loadedFontTier === 3">
-                            {{ loadMoreFontsButtonMsg }}
-                    </button>
-                    
-
                 </div>
 
                 <div class="column">
@@ -179,7 +171,13 @@ export default {
                 var button = $("#button-load-fonts");
                 button.toggleClass("is-loading");
                 this.loadedFontTier++;
-                setTimeout(() => button.toggleClass("is-loading"), 1000);
+                setTimeout(() => {
+                    button.toggleClass("is-loading");
+                    if(this.loadedFontTier === 3) {
+                        $("#button-load-fonts").attr("disabled", true);
+                        $("#button-load-fonts").toggleClass("is-link");
+                    }
+                }, 1000);
             }
         }
     },
