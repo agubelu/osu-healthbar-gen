@@ -1,7 +1,6 @@
 <template>
     <div id="app">
-        <ribbon color="red" position="bottom-left">Work in progress</ribbon>
-
+        
         <preview-area/>
 
         <h1 class="title">osu! healthbar generator</h1>
@@ -13,7 +12,7 @@
                     <div class="columns">
                         <div class="column is-three-fifths">
                             <text-input label="Your osu! username:" iconleft="user" 
-                                v-model="generatorData.username"/>
+                                v-model="generatorData.username" :errorstatus="usernameInputStatus"/>
                         </div>
                         <div class="column is-two-fifths">
                             <select-input v-model="generatorData.avatarShape" :options="avatarStyleOptions" 
@@ -74,7 +73,6 @@
 import Vue from 'vue'
 import $ from "jquery"
 
-import Ribbon from './components/Ribbon.vue'
 import TextInput from './components/TextInput.vue'
 import NumberInput from './components/NumberInput.vue'
 import PageFooter from './components/Footer.vue'
@@ -90,7 +88,6 @@ window.Event = new Vue();
 export default {
     name: "app",
     components: { 
-                    Ribbon,
                     TextInput,
                     PageFooter,
                     PreviewArea,
@@ -101,6 +98,9 @@ export default {
 
     data() {
         return {
+
+            usernameInputStatus: "is-focused",
+
             flagStyleOptions: [
                 {value: 'none', name: 'No flag'},
                 {value: 'old', name: 'Old'},
