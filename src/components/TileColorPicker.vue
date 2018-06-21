@@ -66,3 +66,14 @@ export default {
 
 </script>
 
+<style>
+.trigger {
+    cursor: pointer;
+
+    -webkit-touch-callout: none;
+      -webkit-user-select: none;
+         -moz-user-select: none;
+          -ms-user-select: none;
+              user-select: none;
+}
+</style>
