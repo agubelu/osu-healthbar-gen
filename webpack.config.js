@@ -56,6 +56,11 @@ module.exports = {
             template: path.resolve(__dirname, "index_template.html"),
             favicon: "src/assets/favicon.ico"
         }),
+        new webpack.ProvidePlugin({
+            jQuery: 'jquery',
+            $: 'jquery',
+            jquery: 'jquery'
+        }),
     ],
 
     resolve: {
