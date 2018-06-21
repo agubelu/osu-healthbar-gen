@@ -3,10 +3,14 @@
         <label v-if="label" class="label">{{ label }}</label>
         <div :class="{ 'control': true, 'has-icons-left': iconleft}">
             <div :class="['select', errorstatus]">
-                <select :value="value" @input="$emit('input', $event.target.value)" :disabled="!enabled">
+                <select :value="value"
+                        :disabled="!enabled"
+                        @input="$emit('input', $event.target.value)">
+
                     <option v-for="opt in options" :value="opt.value">
                         {{ opt.name }}
                     </option>
+                    
                 </select>
                 <span v-if="iconleft" class="icon is-small is-left">
                     <font-awesome-icon :icon="iconleft" />

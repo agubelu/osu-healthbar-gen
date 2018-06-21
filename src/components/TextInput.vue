@@ -1,10 +1,19 @@
 <template>
     <div class="field">
         <label v-if="label" class="label">{{ label }}</label>
-        <div :class="{ 'control': true, 'has-icons-left': iconleft, 'has-icons-right': iconright, 'is-loading': isloading }">
-            <input :class="['input', errorstatus]" type="text"
-                    :placeholder="placeholder" @focus="sendOnFocus" @blur="sendOnBlur"
-                    :value="value" @input="$emit('input', $event.target.value)">
+        <div :class="{ 'control': true,
+                       'has-icons-left': iconleft,
+                       'has-icons-right': iconright,
+                       'is-loading': isloading
+                     }">
+            <input :value="value"
+                   :class="['input', errorstatus]"
+                   :placeholder="placeholder"
+                   type="text"
+                   @focus="sendOnFocus"
+                   @blur="sendOnBlur"
+                   @input="$emit('input', $event.target.value)">
+                   
             <span v-if="iconleft" class="icon is-small is-left">
                 <font-awesome-icon :icon="iconleft" />
             </span>

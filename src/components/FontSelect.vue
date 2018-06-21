@@ -5,9 +5,13 @@
             
             <div :class="{ 'control': true, 'has-icons-left': iconleft, 'is-expanded': true}">
                 <div class="select">
-                    <select :value="value" @input="$emit('input', $event.target.value)" 
-                        class="is-fullwidth font-picker" :style="{'font-family': value}">
-                        <option v-for="font in fonts" :value="font" :style="{'font-family': font}">
+                    <select :value="value"
+                            :style="{'font-family': value}"
+                            class="is-fullwidth font-picker"
+                            @input="$emit('input', $event.target.value)">
+                        <option v-for="font in fonts"
+                                :value="font"
+                                :style="{'font-family': font}">
                             {{ text }}
                         </option>
                     </select>
@@ -49,8 +53,6 @@ export default {
 div.select, select {
     width: 100%;
 }
-
-
 
 .font-picker option {
     font-size: x-large !important;
