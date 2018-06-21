@@ -9,7 +9,6 @@
 </template>
 
 <script>
-import '../assets/scripts/jqColorPicker.min.js'
 import { hexToRgb } from '../assets/scripts/utils.js'
 
 export default {

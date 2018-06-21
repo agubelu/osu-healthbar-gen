@@ -9,6 +9,7 @@ module.exports = {
     entry: {
         app: "./src/main.js",
         vendor: Object.keys(VendorDeps.dependencies)
+                .concat(['./src/assets/scripts/jqColorPicker.js'])
     },
 
     output: {
