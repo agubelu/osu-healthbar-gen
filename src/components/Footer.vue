@@ -5,7 +5,7 @@
                 <p>
                     <i class="fab fa-twitter"></i> <a href="https://twitter.com/agubelu" target="_blank">Twitter</a>
                     &nbsp;|&nbsp;
-                    <i class="fa fa-envelope"></i> <a href="https://osu.ppy.sh/forum/ucp.php?i=pm&mode=compose&u=4780236" target="_blank">Contact me</a>
+                    <font-awesome-icon icon="envelope" /> <a href="https://osu.ppy.sh/forum/ucp.php?i=pm&mode=compose&u=4780236" target="_blank">Contact me</a>
                 </p>
             </div>
             <div class="column">
@@ -15,7 +15,8 @@
             </div>
             <div class="column">
                 <p>
-                    <a href="https://github.com/agubelu/osu-healthbar-gen" target="_blank">View on GitHub</a> <i class="fab fa-github"></i>
+                    <a href="https://github.com/agubelu/osu-healthbar-gen" target="_blank">View on GitHub</a>
+                    &nbsp;<i class="fab fa-github"></i>
                 </p>
             </div>
         </div>
@@ -23,7 +24,11 @@
 </template>
 
 <script>
+import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
+
 export default { 
+
+    components: { FontAwesomeIcon },
 
 }
 </script>

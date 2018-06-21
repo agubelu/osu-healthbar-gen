@@ -22,7 +22,7 @@
             </div>
             <div class="control">
                 <button class="button is-link" id="button-load-fonts" @click="$emit('loadMoreFonts')">
-                    <i class="fas fa-plus"></i>
+                    <font-awesome-icon icon="plus" />
                 </button>
             </div>
         </div>
@@ -31,7 +31,6 @@
 
 <script>
 import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
-
 
 export default {
 
