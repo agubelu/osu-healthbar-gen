@@ -20,7 +20,7 @@ export default {
 
     mounted() {
         const thisComponent = this;
-        $(`.trigger`).colorPicker({
+        $(`#${this.componentId}`).colorPicker({
             opacity: false,
             cssAddon:
                 '.cp-disp {padding:10px; margin-bottom:6px; font-size:19px; height:20px; line-height:20px}' +
