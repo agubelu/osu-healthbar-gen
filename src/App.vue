@@ -88,7 +88,8 @@
                             </div>
                             <div class="tile is-parent">
                                 <!-- Element 2 -->
-                                <tile-color-picker v-model="colortest"/>
+                                <tile-color-picker v-model="generatorFormData.colorAvatarBorder"
+                                                   text="Avatar border"/>
                             </div>
                         </div>
 
@@ -96,15 +97,13 @@
                         <div class="tile">
                             <div class="tile is-parent is-vertical">
                                 <!-- Element 3 -->
-                                <div class="tile is-child box">
-
-                                </div>
+                                <tile-color-picker v-model="generatorFormData.colorBackground"
+                                                   text="Background"/>
                             </div>
                             <div class="tile is-parent">
                                 <!-- Element 4 -->
-                                <div class="tile is-child box">
-
-                                </div>
+                                <tile-color-picker v-model="generatorFormData.colorForeground"
+                                                   text="Foreground"/>
                             </div>
                         </div>
 
@@ -112,15 +111,13 @@
                         <div class="tile">
                             <div class="tile is-parent is-vertical">
                                 <!-- Element 5 -->
-                                <div class="tile is-child box">
-
-                                </div>
+                                <tile-color-picker v-model="generatorFormData.colorBarBorder"
+                                                   text="Bar border"/>
                             </div>
                             <div class="tile is-parent">
                                 <!-- Element 6 -->
-                                <div class="tile is-child box">
-
-                                </div>
+                                <tile-color-picker v-model="generatorFormData.colorFont"
+                                                   text="Font"/>
                             </div>
                         </div>
                         
@@ -156,9 +153,6 @@ export default {
 
     data() {
         return {
-
-            colortest: '#DADADA',
-
             // Holds all raw values from the form
             generatorFormData: {
                 username: '',
@@ -169,6 +163,11 @@ export default {
                 selectedFont: 'pneumati',
                 fontSize: 20,
                 colorTheme: 'blue',
+                colorAvatarBorder: '#123456',
+                colorBackground: '#123123',
+                colorForeground: '#456456',
+                colorBarBorder: '#FEAFEA',
+                colorFont: '#BEDEAD',
             },
 
             // Variables to control the form status
