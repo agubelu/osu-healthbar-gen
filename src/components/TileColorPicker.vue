@@ -45,6 +45,7 @@ export default {
         const thisComponent = this;
         $(`#${this.componentId}`).colorPicker({
             opacity: false,
+            customBG: '#222',
             cssAddon:
                `.cp-disp {padding:10px; margin-bottom:6px; font-size:19px; height:20px; line-height:20px}
                 .cp-xy-slider {width:200px; height:200px;}
@@ -52,7 +53,8 @@ export default {
                 .cp-z-slider {height:200px; width:40px;}
                 .cp-z-cursor {border-width:8px; margin-top:-8px;}
                 .cp-alpha {height:40px;}
-                .cp-alpha-cursor {border-width:8px; margin-left:-8px;}`,
+                .cp-alpha-cursor {border-width:8px; margin-left:-8px;}
+                .cp-color-picker {background: #eee; border:1px solid #333}`,
             renderCallback: function(elem, toggled) {
                 if(toggled === undefined) {
                     thisComponent.$emit('input', '#' + this.color.colors.HEX);
