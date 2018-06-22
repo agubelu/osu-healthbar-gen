@@ -144,6 +144,10 @@ import TileColorPicker from './components/TileColorPicker.vue'
 import countryList from './assets/scripts/country_list.js'
 import { addFontsToStyle, tier1_fonts, tier2_fonts, tier3_fonts } from './assets/scripts/fonts_utils.js'
 
+// Importing all icons that we'll need here
+// (Helps to keeping the bundle size small compared to importing them all)
+import './assets/scripts/loadIcons.js'
+
 window.Event = new Vue();
 
 export default {

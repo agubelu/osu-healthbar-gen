@@ -1,7 +1,7 @@
 <template>
     <section id="section-hero" class="hero is-primary">
         <div :class="{'hero-body': true, 'lightson': lightsOn, 'lightsoff': !lightsOn}" id="canvas-hero">
-            <i id="lightsicon" class="fas fa-lightbulb" @click="toggleLights"></i>
+            <font-awesome-icon icon="lightbulb" @click="toggleLights" />
             <div class="container">
                 <canvas id="layer-dummy" class="canvas-layer" width="1354" height="160" style="z-index: 0;"/>
                 <canvas id="layer0" class="canvas-layer canvas-drawable" width="1354" height="160" style="z-index: 0;"/>
@@ -13,7 +13,11 @@
 </template>
 
 <script>
+import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
+
 export default {
+
+    components: { FontAwesomeIcon },
 
     data() {
         return {
@@ -54,7 +58,7 @@ export default {
     top: 0;
 }
 
-#lightsicon {
+#canvas-hero svg {
     position: absolute;
     top: 1vh;
     right: 1vh;

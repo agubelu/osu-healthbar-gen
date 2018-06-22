@@ -3,7 +3,7 @@
         <div class="columns">
             <div class="column">
                 <p>
-                    <i class="fab fa-twitter"></i> <a href="https://twitter.com/agubelu" target="_blank">Twitter</a>
+                    <font-awesome-icon :icon="['fab', 'twitter']" /> <a href="https://twitter.com/agubelu" target="_blank">Twitter</a>
                     &nbsp;|&nbsp;
                     <font-awesome-icon icon="envelope" /> <a href="https://osu.ppy.sh/forum/ucp.php?i=pm&mode=compose&u=4780236" target="_blank">Contact me</a>
                 </p>
@@ -16,7 +16,7 @@
             <div class="column">
                 <p>
                     <a href="https://github.com/agubelu/osu-healthbar-gen" target="_blank">View on GitHub</a>
-                    &nbsp;<i class="fab fa-github"></i>
+                    <font-awesome-icon :icon="['fab', 'github']" />
                 </p>
             </div>
         </div>

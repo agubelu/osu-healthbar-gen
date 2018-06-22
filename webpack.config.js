@@ -2,14 +2,21 @@ var path = require("path");
 var webpack = require("webpack");
 
 const CleanWebpackPlugin = require("clean-webpack-plugin");
-const VendorDeps = require("./package.json");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
     entry: {
         app: "./src/main.js",
-        vendor: Object.keys(VendorDeps.dependencies)
-                .concat(['./src/assets/scripts/jqColorPicker.js'])
+        vendor: [
+                    'vue',
+                    'jquery',
+                    'bulma',
+                    'bulma-divider',
+                    'axios',
+                    '@fortawesome/vue-fontawesome',
+                    '@fortawesome/fontawesome-svg-core',
+                    './src/assets/scripts/jqColorPicker.js',
+                ]
     },
 
     output: {
