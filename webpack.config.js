@@ -13,6 +13,7 @@ module.exports = {
                     'bulma',
                     'bulma-divider',
                     'axios',
+                    'lodash',
                     '@fortawesome/vue-fontawesome',
                     '@fortawesome/fontawesome-svg-core',
                     './src/assets/scripts/jqColorPicker.js',
