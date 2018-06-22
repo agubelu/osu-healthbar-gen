@@ -1,12 +1,13 @@
 <template>
     <div>
-        <label v-if="label" class="label">{{ label }}</label>
+        <label v-if="label" class="label" :for="componentid">{{ label }}</label>
         <div class="field has-addons">
             
             <div :class="{ 'control': true, 'has-icons-left': iconleft, 'is-expanded': true}">
                 <div class="select">
                     <select :value="value"
                             :style="{'font-family': value}"
+                            :id="componentid"
                             class="is-fullwidth font-picker"
                             @input="$emit('input', $event.target.value)">
                         <option v-for="font in fonts"
@@ -43,6 +44,12 @@ export default {
         fonts: { default: [], },
         iconleft: { default: '' },
         enabled: { default: true },
+    },
+
+    computed: {
+        componentid: function() {
+            return "id-" + this.label.toLowerCase().replace(/[^a-zA-Z0-9 \-_]/g, "").replace(/\s/g, "-");
+        }
     },
 
 }

@@ -340,7 +340,6 @@ export default {
 #app {
     font-family: 'arlrdbd', Arial;
     text-align: center;
-    
 }
 
 #form-container {

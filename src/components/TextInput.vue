@@ -1,6 +1,6 @@
 <template>
     <div class="field">
-        <label v-if="label" class="label">{{ label }}</label>
+        <label v-if="label" class="label" :for="componentid">{{ label }}</label>
         <div :class="{ 'control': true,
                        'has-icons-left': iconleft,
                        'has-icons-right': iconright,
@@ -9,6 +9,7 @@
             <input :value="value"
                    :class="['input', errorstatus]"
                    :placeholder="placeholder"
+                   :id="componentid"
                    type="text"
                    @focus="sendOnFocus"
                    @blur="sendOnBlur"
@@ -38,6 +39,12 @@ export default {
         value: { default: '' },
         errorstring: { default: '' },
         errorstatus: { default: '' },
+    },
+
+    computed: {
+        componentid: function() {
+            return "id-" + this.label.toLowerCase().replace(/[^a-zA-Z0-9 \-_]/g, "").replace(/\s/g, "-");
+        }
     },
 
     methods: {

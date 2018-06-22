@@ -1,10 +1,11 @@
 <template>
     <div class="field">
-        <label v-if="label" class="label">{{ label }}</label>
+        <label v-if="label" class="label" :for="componentid">{{ label }}</label>
         <div :class="{ 'control': true, 'has-icons-left': iconleft}">
             <div :class="['select', errorstatus]">
                 <select :value="value"
                         :disabled="!enabled"
+                        :id="componentid"
                         @input="$emit('input', $event.target.value)">
 
                     <option v-for="opt in options" :value="opt.value">
@@ -37,6 +38,12 @@ export default {
         errorstatus: { default: '' },
         iconleft: { default: '' },
         enabled: { default: true },
+    },
+
+    computed: {
+        componentid: function() {
+            return "id-" + this.label.toLowerCase().replace(/[^a-zA-Z0-9 \-_]/g, "").replace(/\s/g, "-");
+        }
     },
 
 }
