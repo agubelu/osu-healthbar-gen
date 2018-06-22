@@ -14,7 +14,8 @@ import faEnvelope from '@fortawesome/fontawesome-free-solid/faEnvelope'
 import faGithub from '@fortawesome/fontawesome-free-brands/faGithub'
 import faTwitter from '@fortawesome/fontawesome-free-brands/faTwitter'
 import faLightbulb from '@fortawesome/fontawesome-free-solid/faLightbulb'
+import faStar from '@fortawesome/fontawesome-free-solid/faStar'
 
 library.add(faUser, faUserCircle, faPencilAlt, faFlag ,faGlobe, faFont,
             faPlus, faSortNumericDown, faPaintBrush, faEnvelope, faGithub, 
-            faTwitter, faLightbulb, faExclamationTriangle, faCheck);
+            faTwitter, faLightbulb, faExclamationTriangle, faCheck, faStar);

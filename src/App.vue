@@ -3,7 +3,7 @@
         
         <preview-area/>
 
-        <h1 class="title">osu! healthbar generator</h1>
+        <h1 class="title is-2" id="page-title">osu! healthbar generator</h1>
         <div class="container" id="form-container">
             <div class="columns">
 
@@ -58,7 +58,7 @@
                         <div class="column is-three-quarters">
                             <font-select v-model="generatorFormData.selectedFont"
                                          :fonts="fontList"
-                                         :text="textToPrint || 'Lorem ipsum dolor sit amet'"
+                                         :text="textToPrint || 'Type in your username!'"
                                          label="Font:"
                                          iconleft="font" 
                                          @loadMoreFonts="onLoadMoreFonts" />
@@ -174,7 +174,7 @@ export default {
                 text: '',
                 flagStyle: 'new',
                 country: '',
-                selectedFont: 'pneumati',
+                selectedFont: 'arlrdbd',
                 fontSize: 20,
                 colorAvatarBorder: themeDefaults.blue.avatarBorder,
                 colorBackground: themeDefaults.blue.background,
@@ -339,7 +339,7 @@ export default {
 
 <style>
 #app {
-    font-family: Helvetica, Arial, sans-serif;
+    font-family: 'arlrdbd', Arial;
     text-align: center;
     
 }
@@ -349,7 +349,6 @@ export default {
     padding-right: 3vw;
     margin-top: 3vh;
     margin-bottom: 3vh;
-    background-color: white;
 }
 
 #country-div .column {

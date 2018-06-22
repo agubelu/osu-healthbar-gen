@@ -15,7 +15,9 @@
             </div>
             <div class="column">
                 <p>
-                    <a href="https://github.com/agubelu/osu-healthbar-gen" target="_blank">View on GitHub</a>
+                    <a href="https://github.com/agubelu/osu-healthbar-gen" target="_blank">
+                        {{ this.starCount }} <font-awesome-icon icon="star" /> on GitHub
+                    </a>
                     <font-awesome-icon :icon="['fab', 'github']" />
                 </p>
             </div>
@@ -25,10 +27,24 @@
 
 <script>
 import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
+import axios from 'axios'
 
 export default { 
 
     components: { FontAwesomeIcon },
+
+    data() {
+        return {
+            starCount: 0,
+        }
+    },
+
+    mounted() {
+        axios.get("https://api.github.com/repos/agubelu/osu-healthbar-gen")
+             .then(response => {
+                 this.starCount = response.data["stargazers_count"];
+             });
+    }
 
 }
 </script>
