@@ -286,7 +286,6 @@ export default {
         },
 
         getUserDataDebounced: _.debounce(function() {
-            console.log("Launching AJAX request");
             let username = this.generatorFormData.username;
             if(!username) return;
 
