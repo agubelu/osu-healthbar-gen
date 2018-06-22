@@ -15,8 +15,12 @@
                         <div class="column is-three-fifths">
                             <text-input v-model="generatorFormData.username"
                                         :errorstatus="formStatus.usernameInputStatus"
+                                        :errorstring="formStatus.usernameInputError"
+                                        :isloading="formStatus.usernameInputLoading"
+                                        :iconright="formStatus.usernameInputIcon"
                                         label="Your osu! username:" 
-                                        iconleft="user" />
+                                        iconleft="user" 
+                                        @input="onUsernameInput"/>
                         </div>
                         <div class="column is-two-fifths">
                             <select-input v-model="generatorFormData.avatarShape"
@@ -132,6 +136,8 @@
 
 <script>
 import Vue from 'vue'
+import axios from 'axios'
+import _ from 'lodash'
 
 import TextInput from './components/TextInput.vue'
 import NumberInput from './components/NumberInput.vue'
@@ -158,6 +164,7 @@ export default {
 
     data() {
         return {
+            // Selected color theme
             colorTheme: 'blue',
 
             // Holds all raw values from the form
@@ -165,7 +172,7 @@ export default {
                 username: '',
                 avatarShape: 'circle',
                 text: '',
-                flagStyle: 'none',
+                flagStyle: 'new',
                 country: '',
                 selectedFont: 'pneumati',
                 fontSize: 20,
@@ -179,6 +186,9 @@ export default {
             // Variables to control the form status
             formStatus: {
                 usernameInputStatus: "is-focused",
+                usernameInputError: '',
+                usernameInputIcon: '',
+                usernameInputLoading: false,
                 loadedFontTier: 1,
             },
 
@@ -274,6 +284,45 @@ export default {
                 }
             }, 1500);
         },
+
+        getUserDataDebounced: _.debounce(function() {
+            console.log("Launching AJAX request");
+            let username = this.generatorFormData.username;
+            if(!username) return;
+
+            this.formStatus.usernameInputLoading = true;
+
+            axios.get("https://new.agube.lu/generator/api/getUser?q=" + encodeURI(username))
+                 .then(response => {
+                    let userExists = response.data.exists;
+
+                    if(userExists) {
+                        this.formStatus.usernameInputStatus = 'is-success';
+                        this.formStatus.usernameInputIcon = 'check';
+                        this.formStatus.usernameInputLoading = false;
+                        this.generatorFormData.country = response.data.country;
+                        this.generatorFormData.username = response.data.username;
+                    } else {
+                        this.formStatus.usernameInputStatus = 'is-danger';
+                        this.formStatus.usernameInputError = 'User does not exist!';
+                        this.formStatus.usernameInputIcon = 'exclamation-triangle';
+                        this.formStatus.usernameInputLoading = false;
+                    }
+                 })
+                 .catch(error => {
+                     alert("Error: " + error)
+                 });
+        }, 750),
+
+        onUsernameInput() {
+            // Reset the status
+            this.formStatus.usernameInputStatus = '';
+            this.formStatus.usernameInputError = '';
+            this.formStatus.usernameInputIcon = '';
+            this.formStatus.usernameInputLoading = false;
+
+            this.getUserDataDebounced();
+        }
     },
 
     mounted() {

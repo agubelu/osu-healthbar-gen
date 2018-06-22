@@ -1,4 +1,6 @@
 import { library } from '@fortawesome/fontawesome-svg-core'
+import faCheck from '@fortawesome/fontawesome-free-solid/faCheck'
+import faExclamationTriangle from '@fortawesome/fontawesome-free-solid/faExclamationTriangle'
 import faUser from '@fortawesome/fontawesome-free-solid/faUser'
 import faUserCircle from '@fortawesome/fontawesome-free-solid/faUserCircle'
 import faPencilAlt from '@fortawesome/fontawesome-free-solid/faPencilAlt'
@@ -15,4 +17,4 @@ import faLightbulb from '@fortawesome/fontawesome-free-solid/faLightbulb'
 
 library.add(faUser, faUserCircle, faPencilAlt, faFlag ,faGlobe, faFont,
             faPlus, faSortNumericDown, faPaintBrush, faEnvelope, faGithub, 
-            faTwitter, faLightbulb);
+            faTwitter, faLightbulb, faExclamationTriangle, faCheck);
