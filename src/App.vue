@@ -141,8 +141,8 @@ import SelectInput from './components/SelectInput.vue'
 import FontSelect from './components/FontSelect.vue'
 import TileColorPicker from './components/TileColorPicker.vue'
 
-import countryList from './assets/scripts/country_list.js'
-import { addFontsToStyle, tier1_fonts, tier2_fonts, tier3_fonts } from './assets/scripts/fonts_utils.js'
+import countryList from './assets/scripts/countryList.js'
+import { addFontsToStyle, tier1_fonts, tier2_fonts, tier3_fonts } from './assets/scripts/fontsUtils.js'
 import themeDefaults from './assets/scripts/themeColors.js'
 
 // Importing all icons that we'll need here
