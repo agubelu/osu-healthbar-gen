@@ -79,7 +79,7 @@
                             <div class="tile is-parent is-vertical">
                                 <!-- Element 1 -->
                                 <div class="tile is-child">
-                                    <select-input v-model="generatorFormData.colorTheme" 
+                                    <select-input v-model="colorTheme" 
                                                   :options="selectOptions.presetStyleOptions" 
                                                   iconleft="paint-brush"
                                                   label="Color theme:"
@@ -143,6 +143,7 @@ import TileColorPicker from './components/TileColorPicker.vue'
 
 import countryList from './assets/scripts/country_list.js'
 import { addFontsToStyle, tier1_fonts, tier2_fonts, tier3_fonts } from './assets/scripts/fonts_utils.js'
+import themeDefaults from './assets/scripts/themeColors.js'
 
 // Importing all icons that we'll need here
 // (Helps to keeping the bundle size small compared to importing them all)
@@ -157,6 +158,8 @@ export default {
 
     data() {
         return {
+            colorTheme: 'blue',
+
             // Holds all raw values from the form
             generatorFormData: {
                 username: '',
@@ -166,12 +169,11 @@ export default {
                 country: '',
                 selectedFont: 'pneumati',
                 fontSize: 20,
-                colorTheme: 'blue',
-                colorAvatarBorder: {r: 255, g: 255, b: 255},
-                colorBackground: {r: 255, g: 255, b: 255},
-                colorForeground: {r: 255, g: 255, b: 255},
-                colorBarBorder: {r: 255, g: 255, b: 255},
-                colorFont: {r: 255, g: 255, b: 255},
+                colorAvatarBorder: themeDefaults.blue.avatarBorder,
+                colorBackground: themeDefaults.blue.background,
+                colorForeground: themeDefaults.blue.foreground,
+                colorBarBorder: themeDefaults.blue.barBorder,
+                colorFont: themeDefaults.blue.font,
             },
 
             // Variables to control the form status
@@ -243,6 +245,16 @@ export default {
             return this.formStatus.loadedFontTier === 1 ?
             "This will download 200 aditional fonts, with a total size of around ~25MB" :
             "This will download 400 aditional fonts, with a total size of around ~35MB";
+        }
+    },
+
+    watch: {
+        colorTheme: function(newVal) {
+                this.generatorFormData.colorAvatarBorder = themeDefaults[newVal].avatarBorder,
+                this.generatorFormData.colorBackground = themeDefaults[newVal].background,
+                this.generatorFormData.colorForeground = themeDefaults[newVal].foreground,
+                this.generatorFormData.colorBarBorder = themeDefaults[newVal].barBorder,
+                this.generatorFormData.colorFont = themeDefaults[newVal].font
         }
     },
 
