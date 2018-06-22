@@ -54,7 +54,10 @@ export default {
                 // toggled is undefined if the user has picked a new color
                 // otherwise it's true (picker opening) or false (closing)
                 if(toggled === undefined) {
-                    thisComponent.$emit('input', this.color.colors.RND.rgb);
+                    let r = this.color.colors.RND.rgb.r;
+                    let g = this.color.colors.RND.rgb.g;
+                    let b = this.color.colors.RND.rgb.b;
+                    thisComponent.$emit('input', {r: r, g: g, b: b});
                 }
             }
         });

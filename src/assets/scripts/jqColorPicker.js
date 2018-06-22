@@ -234,12 +234,12 @@
             left: !_GPU ? a : '',
             borderColor : alphaContrast + ' transparent'
         };
-        _$trigger._css = {
+        /*_$trigger._css = {
             backgroundColor : hasNoValue ? '' : colorText,
             color: hasNoValue ? '' :
                 colors.rgbaMixBGMixCustom.luminance > 0.22 ? dark : light
         };
-        _$trigger.text = hasNoValue ? '' : triggerValue !== colorText ? colorText : '';
+        _$trigger.text = hasNoValue ? '' : triggerValue !== colorText ? colorText : '';*/
 
         toggled !== undefined ? render(toggled) : _animate(render);
     }
@@ -256,8 +256,8 @@
         _$alpha.css(_$alpha._css);
         _$alpha_cursor.css(_$alpha_cursor._css);
 
-        _options.doRender && _$trigger.css(_$trigger._css);
-        _$trigger.text && _$trigger.val(_$trigger.text);
+        /*_options.doRender && _$trigger.css(_$trigger._css);
+        _$trigger.text && _$trigger.val(_$trigger.text);*/
 
         _options.renderCallback.call(
             _colorPicker,
