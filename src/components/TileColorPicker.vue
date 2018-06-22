@@ -1,7 +1,7 @@
 <template>
     <div class="tile is-child box trigger"
          :id="componentId"
-         :style="{ 'background-color': value }">
+         :style="{ 'background-color': `rgb(${value.r},${value.g},${value.b})` }">
         <p class="subtitle is-4" :style="{ 'color': fontColor }">
             {{ text }}
         </p>
@@ -9,12 +9,10 @@
 </template>
 
 <script>
-import { hexToRgb } from '../assets/scripts/utils.js'
-
 export default {
 
     props: {
-        value: { default: '#FFFFFF' },
+        value: { default: {r: 255, g: 255, b: 255} },
         text: { default: 'Sample text' },
     },
 
@@ -24,10 +22,8 @@ export default {
         },
 
         fontColor: function() {
-            var rgb = hexToRgb(this.value);
-            var [R, G, B] = [rgb.r, rgb.g, rgb.b];
-            
-            var C = [R/255, G/255, B/255];
+            var C = [this.value.r/255, this.value.g/255, this.value.b/255];
+
             for (var i = 0; i < C.length; ++i) {
 			    if (C[i] <= 0.03928) {
 				    C[i] = C[i] / 12.92;
@@ -36,7 +32,7 @@ export default {
 			    }
 		    }
 
-		    var L = (0.2126 * C[0]) + (0.7152 * C[1]) + (0.0722 * C[2]);
+            var L = (0.2126 * C[0]) + (0.7152 * C[1]) + (0.0722 * C[2]);
             return L > 0.179 ? '#000' : '#FFF';
         }
     },
@@ -45,7 +41,6 @@ export default {
         const thisComponent = this;
         $(`#${this.componentId}`).colorPicker({
             opacity: false,
-            customBG: '#222',
             cssAddon:
                `.cp-disp {padding:10px; margin-bottom:6px; font-size:19px; height:20px; line-height:20px}
                 .cp-xy-slider {width:200px; height:200px;}
@@ -56,8 +51,10 @@ export default {
                 .cp-alpha-cursor {border-width:8px; margin-left:-8px;}
                 .cp-color-picker {background: #eee; border:1px solid #333}`,
             renderCallback: function(elem, toggled) {
+                // toggled is undefined if the user has picked a new color
+                // otherwise it's true (picker opening) or false (closing)
                 if(toggled === undefined) {
-                    thisComponent.$emit('input', '#' + this.color.colors.HEX);
+                    thisComponent.$emit('input', this.color.colors.RND.rgb);
                 }
             }
         });

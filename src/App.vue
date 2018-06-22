@@ -167,11 +167,11 @@ export default {
                 selectedFont: 'pneumati',
                 fontSize: 20,
                 colorTheme: 'blue',
-                colorAvatarBorder: '#123456',
-                colorBackground: '#123123',
-                colorForeground: '#456456',
-                colorBarBorder: '#FEAFEA',
-                colorFont: '#BEDEAD',
+                colorAvatarBorder: {r: 255, g: 255, b: 255},
+                colorBackground: {r: 255, g: 255, b: 255},
+                colorForeground: {r: 255, g: 255, b: 255},
+                colorBarBorder: {r: 255, g: 255, b: 255},
+                colorFont: {r: 255, g: 255, b: 255},
             },
 
             // Variables to control the form status
