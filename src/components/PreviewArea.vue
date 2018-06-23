@@ -4,24 +4,31 @@
             <font-awesome-icon icon="lightbulb" @click="toggleLights" />
             <div class="container">
                 <canvas id="layer-dummy" class="canvas-layer" width="1354" height="160" style="z-index: 0;"/>
-                <!-- Bar border -->
-                <template-layer zindex="1"
-                                :template-name="templateBarBorder"
-                                :color="colorBarBorder"
-                                :content-start="{x:136, y:52}"
-                                :content-end="{x:1323, y:107}"/>
                 <!-- Background -->
-                <template-layer zindex="2"
+                <template-layer zindex="1"
                                 :template-name="templateBackground"
                                 :color="colorBackground"
+                                :needs-dark-border="true"
                                 :content-start="{x:152, y:68}"
                                 :content-end="{x:1307, y:91}"/>
-                <!-- Foreground -->
-                <template-layer zindex="3"
+                <!-- HIDDEN Foreground -->
+                <template-layer :display="'none'"
                                 :template-name="templateForeground"
                                 :color="colorForeground"
                                 :content-start="{x:143, y:36}"
                                 :content-end="{x:1298, y:59}"/>
+                <!-- Preview Foreground -->
+                <template-layer zindex="2"
+                                :template-name="templateForegroundPreview"
+                                :color="colorForeground"
+                                :content-start="{x:152, y:68}"
+                                :content-end="{x:932, y:91}"/>
+                <!-- Bar border -->
+                <template-layer zindex="3"
+                                :template-name="templateBarBorder"
+                                :color="colorBarBorder"
+                                :content-start="{x:136, y:52}"
+                                :content-end="{x:1323, y:107}"/>
                 <!-- Avatar border -->
                 <template-layer zindex="4"
                                 v-if="avatarShape !== 'none'"
@@ -45,7 +52,8 @@ export default {
 
     props: ['textToPrint', 'avatarShape', 'flagData', 'font', 'fontSize', 'colorAvatarBorder',
             'colorBackground', 'colorForeground', 'colorBarBorder', 'colorFont', 'userID',
-            'templateAvatarBorder', 'templateBackground', 'templateForeground', 'templateBarBorder'],
+            'templateAvatarBorder', 'templateBackground', 'templateForeground', 'templateForegroundPreview',
+            'templateBarBorder'],
 
     data() {
         return {

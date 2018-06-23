@@ -1,9 +1,13 @@
 <template>
-    <canvas :id="componentId" class="canvas-layer canvas-drawable" :style="{'z-index': zindex}" width="1354" height="160"/>
+    <canvas :id="componentId"
+            :style="{'z-index': zindex, 'display': display}"
+            class="canvas-layer canvas-drawable" 
+            width="1354"
+            height="160"/>
 </template>
 
 <script>
-import { loadImageInCanvas } from '../../assets/scripts/canvasUtils.js'
+import { loadImageInCanvas, recolorCanvas } from '../../assets/scripts/canvasUtils.js'
 
 
 export default {
@@ -12,6 +16,7 @@ export default {
         zindex: { default: 0 },
         templateName: { default: '' },
         needsDarkBorder: { default: false },
+        display: { default: '' },
 
         placementPosition: { 
             type: Object,
@@ -42,19 +47,37 @@ export default {
             loadImageInCanvas(
                 document.getElementById(this.componentId),
                 require("../../assets/templates/" + this.templateName),
-                this.placementPosition
+                this.placementPosition,
+                this.contentStart,
+                this.contentEnd,
+                this.color,
+                this.needsDarkBorder
+            );
+        },
+
+        recolorTemplate() {
+            recolorCanvas(
+                document.getElementById(this.componentId),
+                this.contentStart,
+                this.contentEnd,
+                this.color,
+                this.needsDarkBorder
             );
         }
     },
 
     mounted() {
-        // Load the image into the canvas
+        // Load the image into the canvas and recolor them
         this.updateTemplate();
     },
 
     watch: {
         templateName: function() {
             this.updateTemplate();
+        },
+
+        color: function() {
+            this.recolorTemplate();
         }
     },
 }

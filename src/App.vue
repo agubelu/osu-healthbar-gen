@@ -16,6 +16,7 @@
                       :templateAvatarBorder="templateAvatarBorder"
                        templateBackground="background.png"
                        templateForeground="foreground.png"
+                       templateForegroundPreview="foreground-preview.png"
                        templateBarBorder="border.png"/>
 
         <h1 class="title is-2" id="page-title">osu! healthbar generator</h1>
