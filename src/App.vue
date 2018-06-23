@@ -197,7 +197,7 @@ export default {
                 flagStyle: 'new',
                 country: '',
                 selectedFont: 'arlrdbd',
-                fontSize: 20,
+                fontSize: 30,
                 colorAvatarBorder: themeDefaults.blue.avatarBorder,
                 colorBackground: themeDefaults.blue.background,
                 colorForeground: themeDefaults.blue.foreground,

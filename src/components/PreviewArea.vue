@@ -37,10 +37,19 @@
                                 :placement-position="{x:17, y:14}"
                                 :content-start="{x:17, y:14}"
                                 :content-end="{x:152, y:149}"/>
-                <!-- Avatar border -->
+                <!-- Flag -->
                 <flag-layer zindex="5"
                             :flag-data="flagData"
                             :is-avatar-present="avatarShape !== 'none'"/>
+                
+                <!-- Text -->
+                <text-layer zindex="6"
+                            :text-to-print="textToPrint"
+                            :font-size="fontSize"
+                            :font="font"
+                            :text-color="colorFont"
+                            :is-avatar-present="avatarShape !== 'none'"
+                            :is-flag-present="!flagData.startsWith('none')"/>
             </div>
         </div>
     </section>
@@ -50,10 +59,11 @@
 import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
 import TemplateLayer from './layers/TemplateLayer.vue'
 import FlagLayer from './layers/FlagLayer.vue'
+import TextLayer from './layers/TextLayer.vue'
 
 export default {
 
-    components: { FontAwesomeIcon, TemplateLayer, FlagLayer },
+    components: { FontAwesomeIcon, TemplateLayer, FlagLayer, TextLayer },
 
     props: ['textToPrint', 'avatarShape', 'flagData', 'font', 'fontSize', 'colorAvatarBorder',
             'colorBackground', 'colorForeground', 'colorBarBorder', 'colorFont', 'userID',
@@ -113,7 +123,7 @@ export default {
 }
 
 .lightson {
-    background-color: #ecebeb;
+    background-color: #dad8d8;
     color: black;
 }
 </style>

@@ -52,7 +52,7 @@ export default {
 <style>
 #footer {
     margin-top: 5vh;
-    background-color: #ecebeb;
+    background-color: #dad8d8;
     padding-top: 10px;
     padding-bottom: 10px;
 }
