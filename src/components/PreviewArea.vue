@@ -37,6 +37,10 @@
                                 :placement-position="{x:17, y:14}"
                                 :content-start="{x:17, y:14}"
                                 :content-end="{x:152, y:149}"/>
+                <!-- Avatar border -->
+                <flag-layer zindex="5"
+                            :flag-data="flagData"
+                            :is-avatar-present="avatarShape !== 'none'"/>
             </div>
         </div>
     </section>
@@ -45,10 +49,11 @@
 <script>
 import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
 import TemplateLayer from './layers/TemplateLayer.vue'
+import FlagLayer from './layers/FlagLayer.vue'
 
 export default {
 
-    components: { FontAwesomeIcon, TemplateLayer },
+    components: { FontAwesomeIcon, TemplateLayer, FlagLayer },
 
     props: ['textToPrint', 'avatarShape', 'flagData', 'font', 'fontSize', 'colorAvatarBorder',
             'colorBackground', 'colorForeground', 'colorBarBorder', 'colorFont', 'userID',
