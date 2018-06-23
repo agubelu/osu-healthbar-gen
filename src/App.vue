@@ -364,6 +364,7 @@ export default {
 <style>
 html {
     min-height: 100vh;
+    overflow-y:auto;
 }
 
 body {
