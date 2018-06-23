@@ -5,25 +5,12 @@ const CleanWebpackPlugin = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-    entry: {
-        app: "./src/main.js",
-        vendor: [
-                    'vue',
-                    'jquery',
-                    'bulma',
-                    'bulma-divider',
-                    'axios',
-                    'lodash',
-                    '@fortawesome/vue-fontawesome',
-                    '@fortawesome/fontawesome-svg-core',
-                    './src/assets/scripts/jqColorPicker.js',
-                ]
-    },
+    entry: './src/main.js',
 
     output: {
         path: path.resolve(__dirname, "dist"),
         publicPath: process.env.PUBLIC_PATH || "/",
-        filename: process.env.NODE_ENV === "production" ? "js/[name].[chunkhash:6].js" : "js/[name].js"
+        filename: process.env.NODE_ENV === "production" ? "js/build.[hash:6].js" : "js/build.js"
     },
 
     module: {
@@ -57,9 +44,6 @@ module.exports = {
 
     plugins: [
         new CleanWebpackPlugin(["dist"]),
-        new webpack.HashedModuleIdsPlugin(),
-        new webpack.optimize.CommonsChunkPlugin({ name: "vendor" }),
-        new webpack.optimize.CommonsChunkPlugin({ name: "manifest" }),
         new HtmlWebpackPlugin({
             filename: path.resolve(__dirname, "dist/index.html"),
             template: path.resolve(__dirname, "index_template.html"),

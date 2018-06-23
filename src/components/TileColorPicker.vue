@@ -9,6 +9,8 @@
 </template>
 
 <script>
+import '../assets/scripts/jqColorPicker.js'
+
 export default {
 
     props: {

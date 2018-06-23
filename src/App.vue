@@ -138,6 +138,8 @@
 import Vue from 'vue'
 import axios from 'axios'
 import _ from 'lodash'
+import 'bulma'
+import 'bulma-divider'
 
 import TextInput from './components/TextInput.vue'
 import NumberInput from './components/NumberInput.vue'
