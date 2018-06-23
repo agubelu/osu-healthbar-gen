@@ -75,7 +75,6 @@ export default {
 }
 
 .canvas-layer {
-    border: 1px dotted red;
     max-width: 100%;
     height: auto;
 }
