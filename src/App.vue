@@ -340,7 +340,7 @@ export default {
 
 <style>
 #app {
-    font-family: 'arlrdbd', Arial;
+    font-family: 'arlrdbd';
     text-align: center;
 }
 
