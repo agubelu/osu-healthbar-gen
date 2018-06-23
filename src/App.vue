@@ -362,9 +362,21 @@ export default {
 </script>
 
 <style>
+html {
+    min-height: 100vh;
+}
+
+body {
+    min-height: 100vh;
+}
+
 #app {
     font-family: 'arlrdbd';
     text-align: center;
+    background-color: #f3f3f3;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 #form-container {
@@ -372,6 +384,7 @@ export default {
     padding-right: 3vw;
     margin-top: 3vh;
     margin-bottom: 3vh;
+    flex: 1;
 }
 
 #country-div .column {
