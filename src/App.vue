@@ -293,7 +293,7 @@ export default {
 
             this.formStatus.usernameInputLoading = true;
 
-            axios.get("https://new.agube.lu/generator/api/getUser?q=" + encodeURI(username))
+            axios.get("https://agube.lu/generator/api/getUser?q=" + encodeURI(username))
                  .then(response => {
                     let userExists = response.data.exists;
 
@@ -311,7 +311,7 @@ export default {
                     }
                  })
                  .catch(error => {
-                     alert("Error: " + error)
+                     alert(error);
                  });
         }, 750),
 
