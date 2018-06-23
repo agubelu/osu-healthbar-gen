@@ -1,7 +1,22 @@
 <template>
     <div id="app">
         
-        <preview-area/>
+        <preview-area :textToPrint="textToPrint"
+                      :avatarShape="generatorFormData.avatarShape"
+                      :flagData="countryAndFlagStyle"
+                      :font="generatorFormData.selectedFont"
+                      :fontSize="generatorFormData.fontSize"
+                      :colorAvatarBorder="generatorFormData.colorAvatarBorder"
+                      :colorBackground="generatorFormData.colorBackground"
+                      :colorForeground="generatorFormData.colorForeground"
+                      :colorBarBorder="generatorFormData.colorBarBorder"
+                      :colorFont="generatorFormData.colorFont"
+                      :userID="userID"
+                      
+                      :templateAvatarBorder="templateAvatarBorder"
+                       templateBackground="background.png"
+                       templateForeground="foreground.png"
+                       templateBarBorder="border.png"/>
 
         <h1 class="title is-2" id="page-title">osu! healthbar generator</h1>
         <div class="container" id="form-container">
@@ -47,7 +62,7 @@
                         <div class="column is-three-fifths">
                             <select-input v-model="generatorFormData.country"
                                           :options="selectOptions.countryOptions" 
-                                          :enabled="countrySelectorEnabled"
+                                          :enabled="generatorFormData.flagStyle !== 'none'"
                                           label="Country:"
                                           iconleft="globe" />
                         </div>
@@ -170,6 +185,9 @@ export default {
             // Selected color theme
             colorTheme: 'blue',
 
+            // Current user's ID
+            userID: 'noone',
+
             // Holds all raw values from the form
             generatorFormData: {
                 username: '',
@@ -225,15 +243,15 @@ export default {
     },
     
     computed: {
-        // Determines whether the country selector is active or not
-        countrySelectorEnabled: function() {
-            return this.generatorFormData.flagStyle !== 'none';
+        // Returns always a valid avatar border template
+        templateAvatarBorder: function() {
+            let shape = this.generatorFormData.avatarShape;
+            return shape !== 'none' ? `border-${shape}.png` : 'border-circle.png';
         },
 
-        // Returns the selected country or none if the flag style is set to none
-        selectedCountry: function() {
-            return this.generatorFormData.flagStyle === 'none' 
-                   ? null : this.generatorFormData.country; 
+        // Returns the country and flag style in a unified way
+        countryAndFlagStyle: function() {
+            return this.generatorFormData.flagStyle + "/" + this.generatorFormData.country;
         },
 
         // Returns the text that should be printed in the healthbar
@@ -304,6 +322,7 @@ export default {
                         this.formStatus.usernameInputLoading = false;
                         this.generatorFormData.country = response.data.country;
                         this.generatorFormData.username = response.data.username;
+                        this.userID = response.data.id;
                     } else {
                         this.formStatus.usernameInputStatus = 'is-danger';
                         this.formStatus.usernameInputError = 'User does not exist!';
