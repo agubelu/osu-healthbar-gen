@@ -49,7 +49,7 @@
                             :font="font"
                             :text-color="colorFont"
                             :is-avatar-present="avatarShape !== 'none'"
-                            :is-flag-present="!flagData.startsWith('none')"/>
+                            :is-flag-present="isFlagPresent"/>
             </div>
         </div>
     </section>
@@ -79,6 +79,12 @@ export default {
     methods: {
         toggleLights() {
             this.lightsOn = !this.lightsOn;
+        }
+    },
+
+    computed: {
+        isFlagPresent: function() {
+            return !this.flagData.startsWith('none') && this.flagData.split("/")[1] !== '';
         }
     }
     
