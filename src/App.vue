@@ -152,6 +152,7 @@ import TileColorPicker from './components/TileColorPicker.vue'
 import countryList from './assets/scripts/countryList.js'
 import { addFontsToStyle, tier1_fonts, tier2_fonts, tier3_fonts } from './assets/scripts/fontsUtils.js'
 import themeDefaults from './assets/scripts/themeColors.js'
+import shake from './assets/scripts/shake.js'
 
 // Importing all icons that we'll need here
 // (Helps to keeping the bundle size small compared to importing them all)
@@ -308,6 +309,8 @@ export default {
                         this.formStatus.usernameInputError = 'User does not exist!';
                         this.formStatus.usernameInputIcon = 'exclamation-triangle';
                         this.formStatus.usernameInputLoading = false;
+
+                        shake($("#id-your-osu-username").parent());
                     }
                  })
                  .catch(error => {
