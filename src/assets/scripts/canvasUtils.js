@@ -43,7 +43,7 @@ function recolorCanvas(canvas, start, end, color, addDarkBorder = false) {
         for(var x = 0; x < imageData.width; x++) {
             for(var y = 0; y < imageData.height; y++) {
                 if(x < 8 || y < 8 || x >= imageData.width-8 || y >= imageData.height-8 
-                   || (x >= 258 && x <= 263) || (x >= 560 && x <= 565) || (x >= 862 && x <= 867)) {
+                   || (x >= 258 && x <= 263) || (x >= 559 && x <= 565) || (x >= 862 && x <= 867)) {
                     recolorPixel(imageData, x, y, darkColor);
                 } else {
                     recolorPixel(imageData, x, y, color);
