@@ -20,6 +20,7 @@
         "bulma-divider": "^2.0.1",
         "jquery": "^3.3.1",
         "lodash": "^4.17.10",
+        "merge-images": "^1.1.0",
         "vue": "^2.5.11"
     },
     "browserslist": [
