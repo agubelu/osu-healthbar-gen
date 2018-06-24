@@ -10,6 +10,7 @@
                    :class="['input', errorstatus]"
                    :placeholder="placeholder"
                    :id="componentid"
+                   :autofocus="autofocus"
                    type="text"
                    @focus="sendOnFocus"
                    @blur="sendOnBlur"
@@ -39,6 +40,7 @@ export default {
         value: { default: '' },
         errorstring: { default: '' },
         errorstatus: { default: '' },
+        autofocus: { default: false },
     },
 
     computed: {

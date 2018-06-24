@@ -34,6 +34,7 @@
                                         :errorstring="formStatus.usernameInputError"
                                         :isloading="formStatus.usernameInputLoading"
                                         :iconright="formStatus.usernameInputIcon"
+                                        :autofocus="true"
                                         label="Your osu! username:" 
                                         iconleft="user" 
                                         @input="onUsernameInput"/>
