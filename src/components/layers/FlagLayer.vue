@@ -43,7 +43,7 @@ export default {
             // Clear the canvas
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            if(this.flagData.startsWith("none")) return;
+            if(this.flagData.startsWith("none") || this.flagData.split("/")[1] === '') return;
 
             let img = new Image();
             img.onload = () => {

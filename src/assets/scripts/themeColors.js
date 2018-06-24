@@ -2,7 +2,7 @@ const colorThemeDefaults = {
     blue: {
         background: { r: 43, g: 95, b: 116 },
         foreground: { r: 101, g: 197, b: 206 },
-        font: { r: 27, g: 103, b: 136 },
+        font: { r: 113, g: 172, b: 198 },
         avatarBorder: { r: 45, g: 162, b: 211 },
         barBorder: { r: 255, g: 255, b: 255},
     },

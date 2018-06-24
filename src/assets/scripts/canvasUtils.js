@@ -62,4 +62,21 @@ function recolorPixel(imageData, x, y, color) {
     imageData.data[i+2] = color.b;
 }
 
-export { loadImageInCanvas, recolorCanvas };
+function roundedClip(ctx, x, y, width, height, radius) {
+    // From https://stackoverflow.com/a/19593950/5604339
+    // This is probably better than manually trimming the corners using square distance
+    ctx.beginPath();
+    ctx.moveTo(x + radius, y);
+    ctx.lineTo(x + width - radius, y);
+    ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+    ctx.lineTo(x + width, y + height - radius);
+    ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+    ctx.lineTo(x + radius, y + height);
+    ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+    ctx.lineTo(x, y + radius);
+    ctx.quadraticCurveTo(x, y, x + radius, y);
+    ctx.closePath();
+    ctx.clip();
+}
+
+export { loadImageInCanvas, recolorCanvas, roundedClip };

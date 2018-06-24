@@ -29,27 +29,34 @@
                                 :color="colorBarBorder"
                                 :content-start="{x:136, y:52}"
                                 :content-end="{x:1323, y:107}"/>
-                <!-- Avatar border -->
-                <template-layer zindex="4"
-                                v-if="avatarShape !== 'none'"
-                                :template-name="templateAvatarBorder"
-                                :color="colorAvatarBorder"
-                                :placement-position="{x:17, y:14}"
-                                :content-start="{x:17, y:14}"
-                                :content-end="{x:152, y:149}"/>
                 <!-- Flag -->
-                <flag-layer zindex="5"
+                <flag-layer zindex="4"
                             :flag-data="flagData"
                             :is-avatar-present="avatarShape !== 'none'"/>
                 
                 <!-- Text -->
-                <text-layer zindex="6"
+                <text-layer zindex="5"
                             :text-to-print="textToPrint"
                             :font-size="fontSize"
                             :font="font"
                             :text-color="colorFont"
                             :is-avatar-present="avatarShape !== 'none'"
                             :is-flag-present="isFlagPresent"/>
+                
+                <!-- Avatar image -->
+                <avatar-layer zindex="6"
+                              v-if="avatarShape !== 'none'"
+                              :user-i-d="userID"
+                              :avatar-shape="avatarShape" />
+
+                <!-- Avatar border -->
+                <template-layer zindex="7"
+                                v-if="avatarShape !== 'none'"
+                                :template-name="templateAvatarBorder"
+                                :color="colorAvatarBorder"
+                                :placement-position="{x:17, y:14}"
+                                :content-start="{x:17, y:14}"
+                                :content-end="{x:152, y:149}"/>
             </div>
         </div>
     </section>
@@ -60,10 +67,11 @@ import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
 import TemplateLayer from './layers/TemplateLayer.vue'
 import FlagLayer from './layers/FlagLayer.vue'
 import TextLayer from './layers/TextLayer.vue'
+import AvatarLayer from './layers/AvatarLayer.vue'
 
 export default {
 
-    components: { FontAwesomeIcon, TemplateLayer, FlagLayer, TextLayer },
+    components: { FontAwesomeIcon, TemplateLayer, FlagLayer, TextLayer, AvatarLayer },
 
     props: ['textToPrint', 'avatarShape', 'flagData', 'font', 'fontSize', 'colorAvatarBorder',
             'colorBackground', 'colorForeground', 'colorBarBorder', 'colorFont', 'userID',
