@@ -10,6 +10,7 @@ function loadImageInCanvas(canvas, imageUrl, placement, start, end, color, addDa
         recolorCanvas(canvas, start, end, color, addDarkBorder);
     };
 
+    img.crossOrigin="anonymous";
     img.src = imageUrl;
 }
 

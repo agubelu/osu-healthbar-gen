@@ -50,6 +50,7 @@ export default {
                 ctx.drawImage(img, this.isAvatarPresent ? 157 : 137, 20, 32, 22);
             };
 
+            img.crossOrigin="anonymous";
             img.src = this.flagUrl;
         }
     },

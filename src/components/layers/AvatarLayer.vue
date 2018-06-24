@@ -48,6 +48,7 @@ export default {
                 ctx.restore();
             };
 
+            img.crossOrigin="anonymous";
             img.src = `https://agube.lu/generator/api/avatars/${this.userID}.png`;
         }
     },

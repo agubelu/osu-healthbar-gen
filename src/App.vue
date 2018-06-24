@@ -153,32 +153,20 @@
             <div class="is-divider"></div>
 
             <div id="columns-download" class="columns">
-                <div class="column">
-                    <a id="button-drive" class="button is-link is-large">
-                        <span class="icon">
-                            <font-awesome-icon :icon="['fab', 'google-drive']" />
-                        </span>
-                        <span>Save to Drive</span>
-                    </a>
-                </div>
+                <div class="column"></div>
 
                 <div class="column">
-                    <a id="button-dropbox" class="button is-link is-large">
-                        <span class="icon">
-                            <font-awesome-icon :icon="['fab', 'dropbox']" />
-                        </span>
-                        <span>Save to Dropbox</span>
-                    </a>
-                </div>
-
-                <div class="column">
-                    <a id="button-download" class="button is-link is-large">
+                    <a id="button-download"
+                       class="button is-link is-large"
+                       @click="onDirectDownload">
                         <span class="icon">
                             <font-awesome-icon icon="download" />
                         </span>
                         <span>Download</span>
                     </a>
                 </div>
+
+                <div class="column"></div>
             </div>
 
         <!-- Close form-container -->
@@ -208,6 +196,7 @@ import countryList from './assets/scripts/countryList.js'
 import { addFontsToStyle, tier1_fonts, tier2_fonts, tier3_fonts } from './assets/scripts/fontsUtils.js'
 import themeDefaults from './assets/scripts/themeColors.js'
 import shake from './assets/scripts/shake.js'
+import { generateDownloadZip } from './assets/scripts/fileUtils.js'
 
 // Importing all icons that we'll need here
 // (Helps to keeping the bundle size small compared to importing them all)
@@ -385,6 +374,12 @@ export default {
             this.formStatus.usernameInputLoading = false;
 
             this.getUserDataDebounced();
+        },
+
+        onDirectDownload() {
+            let username = (this.generatorFormData.username || 'healthbar')
+                            .replace(" ", "-");
+            generateDownloadZip(username);
         }
     },
 
@@ -448,23 +443,11 @@ body {
     width: 100%;
 }
 
-#button-dropbox, #button-drive {
-    background-color: #888888;
-}
-
 #button-download:hover {
     background-color: #2568d3;
 }
 
 #button-download:active {
     background-color: #225ebd;
-}
-
-#button-dropbox:hover, #button-drive:hover {
-    background-color: #777777;
-}
-
-#button-dropbox:active, #button-drive:active {
-    background-color: #707070;
 }
 </style>
