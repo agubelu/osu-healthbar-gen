@@ -5,14 +5,19 @@ import FileSaver from 'file-saver'
 const _ = x => document.getElementById(x);
 
 function generateDownloadZip(filename) {
-    let scorebarBg = _("id-canvas-layer-1").toDataURL();
-    let scorebarBorder = _("id-canvas-layer-3").toDataURL();
-    let flag = _("id-canvas-layer-4").toDataURL();
-    let text = _("id-canvas-layer-5").toDataURL();
-    let avatar = _("id-canvas-layer-6").toDataURL();
-    let avatarBorder = _("id-canvas-layer-7").toDataURL();
+    let layers = [];
 
-    mergeImages([scorebarBg, scorebarBorder, flag, text, avatar, avatarBorder])
+    layers.push(_("id-canvas-layer-1").toDataURL()); // BG
+    layers.push(_("id-canvas-layer-3").toDataURL()); // Border
+    layers.push(_("id-canvas-layer-4").toDataURL()); // Flag
+    layers.push(_("id-canvas-layer-5").toDataURL()); // Text
+    try {
+        // Those two may not exist if the avatar is set to none
+        layers.push(_("id-canvas-layer-6").toDataURL()); // Avatar
+        layers.push(_("id-canvas-layer-7").toDataURL()); // Avatar border
+    } catch(err) {}
+
+    mergeImages(layers)
                .then(b64 => {
                    afterImagesMerged(b64, filename);
                });
