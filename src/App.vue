@@ -451,4 +451,20 @@ body {
 #button-dropbox, #button-drive {
     background-color: #888888;
 }
+
+#button-download:hover {
+    background-color: #2568d3;
+}
+
+#button-download:active {
+    background-color: #225ebd;
+}
+
+#button-dropbox:hover, #button-drive:hover {
+    background-color: #777777;
+}
+
+#button-dropbox:active, #button-drive:active {
+    background-color: #707070;
+}
 </style>
