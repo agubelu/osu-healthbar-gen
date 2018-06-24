@@ -383,7 +383,7 @@ body {
 #form-container {
     padding-left: 3vw;
     padding-right: 3vw;
-    margin-top: 3vh;
+    margin-top: 0vh;
     margin-bottom: 3vh;
     flex: 1;
 }
@@ -393,7 +393,8 @@ body {
 }
 
 .title {
-    margin-top: 15px;
+    margin-top: 3.5vh;
+    margin-bottom: 3.5vh !important;
 }
 
 .is-ancestor {
