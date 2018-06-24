@@ -51,7 +51,6 @@ export default {
 
 <style>
 #footer {
-    margin-top: 5vh;
     background-color: #dad8d8;
     padding-top: 10px;
     padding-bottom: 0.8rem;

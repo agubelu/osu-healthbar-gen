@@ -15,7 +15,11 @@ import faGithub from '@fortawesome/fontawesome-free-brands/faGithub'
 import faTwitter from '@fortawesome/fontawesome-free-brands/faTwitter'
 import faLightbulb from '@fortawesome/fontawesome-free-solid/faLightbulb'
 import faStar from '@fortawesome/fontawesome-free-solid/faStar'
+import faDownload from '@fortawesome/fontawesome-free-solid/faDownload'
+import faGoogleDrive from '@fortawesome/fontawesome-free-brands/faGoogleDrive'
+import faDropbox from '@fortawesome/fontawesome-free-brands/faDropbox'
 
 library.add(faUser, faUserCircle, faPencilAlt, faFlag ,faGlobe, faFont,
             faPlus, faSortNumericDown, faPaintBrush, faEnvelope, faGithub, 
-            faTwitter, faLightbulb, faExclamationTriangle, faCheck, faStar);
+            faTwitter, faLightbulb, faExclamationTriangle, faCheck, faStar,
+            faDownload, faGoogleDrive, faDropbox);

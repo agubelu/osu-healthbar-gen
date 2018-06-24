@@ -86,6 +86,7 @@
                                           minval="1" />
                         </div>
                     </div>
+                <!-- Close column-left -->
                 </div>
 
                 <div class="is-divider-vertical"></div>
@@ -142,8 +143,45 @@
                         </div>
                         
                     </div>
+
+                <!-- Close column-right -->
+                </div>
+
+            <!-- Close columns -->
+            </div>
+
+            <div class="is-divider"></div>
+
+            <div id="columns-download" class="columns">
+                <div class="column">
+                    <a id="button-drive" class="button is-link is-large">
+                        <span class="icon">
+                            <font-awesome-icon :icon="['fab', 'google-drive']" />
+                        </span>
+                        <span>Save to Drive</span>
+                    </a>
+                </div>
+
+                <div class="column">
+                    <a id="button-dropbox" class="button is-link is-large">
+                        <span class="icon">
+                            <font-awesome-icon :icon="['fab', 'dropbox']" />
+                        </span>
+                        <span>Save to Dropbox</span>
+                    </a>
+                </div>
+
+                <div class="column">
+                    <a id="button-download" class="button is-link is-large">
+                        <span class="icon">
+                            <font-awesome-icon icon="download" />
+                        </span>
+                        <span>Download</span>
+                    </a>
                 </div>
             </div>
+
+        <!-- Close form-container -->
         </div>
 
         <page-footer/>
@@ -156,6 +194,7 @@ import axios from 'axios'
 import _ from 'lodash'
 import 'bulma'
 import 'bulma-divider'
+import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
 
 import TextInput from './components/TextInput.vue'
 import NumberInput from './components/NumberInput.vue'
@@ -179,7 +218,7 @@ window.Event = new Vue();
 export default {
     name: "app",
     components: { TextInput, PageFooter, PreviewArea, SelectInput,
-                  NumberInput, FontSelect, TileColorPicker },
+                  NumberInput, FontSelect, TileColorPicker, FontAwesomeIcon },
 
     data() {
         return {
@@ -403,5 +442,13 @@ body {
 
 #column-right {
     padding-bottom: 0;
+}
+
+#columns-download a {
+    width: 100%;
+}
+
+#button-dropbox, #button-drive {
+    background-color: #888888;
 }
 </style>
