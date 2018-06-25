@@ -44,14 +44,45 @@ export default {
         $(`#${this.componentId}`).colorPicker({
             opacity: false,
             cssAddon:
-               `.cp-disp {padding:10px; margin-bottom:6px; font-size:19px; height:20px; line-height:20px}
-                .cp-xy-slider {width:200px; height:200px;}
-                .cp-xy-cursor {width:16px; height:16px; border-width:2px; margin:-8px}
-                .cp-z-slider {height:200px; width:40px;}
-                .cp-z-cursor {border-width:8px; margin-top:-8px;}
-                .cp-alpha {height:40px;}
-                .cp-alpha-cursor {border-width:8px; margin-left:-8px;}
-                .cp-color-picker {background: #eee; border:1px solid #333}`,
+                `.cp-color-picker{box-sizing:border-box; width:275px;}
+                .cp-color-picker .cp-panel {line-height: 21px; float:right;
+                    padding:0 1px 0 8px; margin-top:-1px; overflow:visible}
+                .cp-xy-slider {width:175px; height:175px;}
+                .cp-xy-slider:active {cursor:none;}
+                .cp-z-slider {height:175px; width:30px;}
+                .cp-panel, .cp-panel input {color:#bbb; font-family:monospace,
+                    "Courier New",Courier,mono; font-size:12px; font-weight:bold; overflow: visible;}
+                .cp-panel input {width:28px; height:12px; padding:2px 3px 1px;
+                    text-align:right; line-height:12px; background:transparent;
+                    border:1px solid; border-color:#222 #666 #666 #222;}
+                .cp-panel hr {margin:0 -2px 2px; height:1px; border:0;
+                    background:#666; border-top:1px solid #222;}
+                .cp-panel .cp-HEX {width:50px; position:absolute; margin:1px -3px 0 -2px;}
+                .cp-alpha {width:155px;}`,
+
+            buildCallback: function($elm) {
+                var colorInstance = this.color,
+                    colorPicker = this;
+
+                $elm.prepend(`<div class="cp-panel">
+                    R <input type="text" class="cp-r" /><br>
+                    G <input type="text" class="cp-g" /><br>
+                    B <input type="text" class="cp-b" /><hr>
+                    HEX: <br>
+                    <input type="text" class="cp-HEX" />
+                </div>`).on('change', 'input', function(e) {
+                    var value = this.value,
+                        className = this.className,
+                        type = className.split('-')[1],
+                        color = {};
+
+                    color[type] = value;
+                    colorInstance.setColor(type === 'HEX' ? value : color,
+                        type === 'HEX' ? 'HEX' : /(?:r|g|b)/.test(type) ? 'rgb' : 'hsv');
+                    colorPicker.render();
+                    this.blur();
+                });
+            },
             renderCallback: function(elem, toggled) {
                 // toggled is undefined if the user has picked a new color
                 // otherwise it's true (picker opening) or false (closing)
@@ -61,6 +92,17 @@ export default {
                     let b = this.color.colors.RND.rgb.b;
                     thisComponent.$emit('input', {r: r, g: g, b: b});
                 }
+
+                var colors = this.color.colors.RND,
+				modes = {
+					r: colors.rgb.r, g: colors.rgb.g, b: colors.rgb.b,
+					h: colors.hsv.h, s: colors.hsv.s, v: colors.hsv.v,
+					HEX: this.color.colors.HEX
+				};
+
+			$('input', '.cp-panel').each(function() {
+				this.value = modes[this.className.substr(3)];
+			});
             }
         });
     }
