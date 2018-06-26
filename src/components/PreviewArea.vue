@@ -46,7 +46,7 @@
                 <!-- Avatar image -->
                 <avatar-layer zindex="6"
                               v-if="avatarShape !== 'none'"
-                              :user-i-d="userID"
+                              :avatar-url="avatarUrl"
                               :avatar-shape="avatarShape" />
 
                 <!-- Avatar border -->
@@ -74,7 +74,7 @@ export default {
     components: { FontAwesomeIcon, TemplateLayer, FlagLayer, TextLayer, AvatarLayer },
 
     props: ['textToPrint', 'avatarShape', 'flagData', 'font', 'fontSize', 'colorAvatarBorder',
-            'colorBackground', 'colorForeground', 'colorBarBorder', 'colorFont', 'userID',
+            'colorBackground', 'colorForeground', 'colorBarBorder', 'colorFont', 'avatarUrl',
             'templateAvatarBorder', 'templateBackground', 'templateForeground', 'templateForegroundPreview',
             'templateBarBorder'],
 

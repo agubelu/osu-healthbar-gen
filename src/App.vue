@@ -11,7 +11,7 @@
                       :colorForeground="generatorFormData.colorForeground"
                       :colorBarBorder="generatorFormData.colorBarBorder"
                       :colorFont="generatorFormData.colorFont"
-                      :userID="userID"
+                      :avatar-url="avatarUrl"
                       
                       :templateAvatarBorder="templateAvatarBorder"
                        templateBackground="background.png"
@@ -215,8 +215,8 @@ export default {
             // Selected color theme
             colorTheme: 'blue',
 
-            // Current user's ID
-            userID: 'noone',
+            // Current user's avatar
+            avatarUrl: 'https://agube.lu/generator/api/avatars/noone.png',
 
             // Holds all raw values from the form
             generatorFormData: {
@@ -352,7 +352,7 @@ export default {
                         this.formStatus.usernameInputLoading = false;
                         this.generatorFormData.country = response.data.country;
                         this.generatorFormData.username = response.data.username;
-                        this.userID = response.data.id;
+                        this.avatarUrl = `https://agube.lu/generator/api/avatars/${response.data.id}.png`;
                     } else {
                         this.formStatus.usernameInputStatus = 'is-danger';
                         this.formStatus.usernameInputError = 'User does not exist!';

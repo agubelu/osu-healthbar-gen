@@ -13,7 +13,7 @@ export default {
 
     props: {
         zindex: { default: 0 },
-        userID: { default: 'noone' },
+        avatarUrl: { default: 'noone' },
         avatarShape: { default: 'circle' },
     },
 
@@ -49,7 +49,7 @@ export default {
             };
 
             img.crossOrigin="anonymous";
-            img.src = `https://agube.lu/generator/api/avatars/${this.userID}.png`;
+            img.src = this.avatarUrl;
         }
     },
 
@@ -58,7 +58,7 @@ export default {
     },
 
     watch: {
-        userID: function() {
+        avatarUrl: function() {
             this.updateAvatar();
         },
 
