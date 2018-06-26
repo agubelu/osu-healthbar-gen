@@ -5,7 +5,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-     <title>osu! healthbar generator</title>
+    <title>osu! healthbar generator</title>
+    <meta name="description" content="Online app that creates custom healthbars for osu!">
 
     <meta name="twitter:card" content="summary">
     <meta name="twitter:site" content="@agubelu">
@@ -30,7 +31,9 @@
         ga('create', 'UA-45596469-4', 'auto');
         ga('send', 'pageview');
     </script>
+
     <div id="app" class="container"></div>
+
     <% if (htmlWebpackPlugin.options.devServer) { %>
         <script src="/dist/build.js"></script>
     <% } %>
