@@ -1,7 +1,7 @@
 <template>
     <div class="field">
         <label v-if="label" class="label" :for="componentid">{{ label }}</label>
-        <div :class="['file', 'has-name', 'is-fullwidth', buttonStatus]">
+        <div :class="['file', 'control', 'has-name', buttonStatus]">
             <label class="file-label">
                 <input :id="componentid"
                        :accept="accept"
@@ -69,7 +69,3 @@ export default {
 
 }
 </script>
-
-<style>
-
-</style>
