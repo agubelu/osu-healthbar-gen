@@ -18,8 +18,10 @@ import faStar from '@fortawesome/fontawesome-free-solid/faStar'
 import faDownload from '@fortawesome/fontawesome-free-solid/faDownload'
 import faGoogleDrive from '@fortawesome/fontawesome-free-brands/faGoogleDrive'
 import faDropbox from '@fortawesome/fontawesome-free-brands/faDropbox'
+import faFileImage from '@fortawesome/fontawesome-free-solid/faFileImage'
+import faTimes from '@fortawesome/fontawesome-free-solid/faTimes'
 
 library.add(faUser, faUserCircle, faPencilAlt, faFlag ,faGlobe, faFont,
             faPlus, faSortNumericDown, faPaintBrush, faEnvelope, faGithub, 
             faTwitter, faLightbulb, faExclamationTriangle, faCheck, faStar,
-            faDownload, faGoogleDrive, faDropbox);
+            faDownload, faGoogleDrive, faDropbox, faFileImage, faTimes);

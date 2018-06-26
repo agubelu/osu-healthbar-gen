@@ -11,7 +11,7 @@
                       :colorForeground="generatorFormData.colorForeground"
                       :colorBarBorder="generatorFormData.colorBarBorder"
                       :colorFont="generatorFormData.colorFont"
-                      :avatar-url="avatarUrl"
+                      :avatar-url="customAvatarUrl || avatarUrl"
                       
                       :templateAvatarBorder="templateAvatarBorder"
                        templateBackground="background.png"
@@ -87,6 +87,19 @@
                                           minval="1" />
                         </div>
                     </div>
+
+                    <!-- Custom avatar uploader -->
+                    <file-uploader :icon="this.customAvatar === null ?
+                                          'file-image' : 'times'"
+                                   :text-button="avatarUploadButtonText"
+                                   :text-selected="avatarUploadText"
+                                   :button-status="this.customAvatar === null ?
+                                                   'is-link' : 'is-dark'"
+                                    label="Override avatar:"
+                                    accept="image/*"
+                                    @fileSelected="onFileSelected"
+                                    @fileSelectorClicked="onFileSelectorClicked"/>
+
                 <!-- Close column-left -->
                 </div>
 
@@ -192,6 +205,7 @@ import PreviewArea from './components/PreviewArea.vue'
 import SelectInput from './components/SelectInput.vue'
 import FontSelect from './components/FontSelect.vue'
 import TileColorPicker from './components/TileColorPicker.vue'
+import FileUploader from './components/FileUploader.vue'
 
 import countryList from './assets/scripts/countryList.js'
 import { addFontsToStyle, tier1_fonts, tier2_fonts, tier3_fonts } from './assets/scripts/fontsUtils.js'
@@ -208,7 +222,8 @@ window.Event = new Vue();
 export default {
     name: "app",
     components: { TextInput, PageFooter, PreviewArea, SelectInput,
-                  NumberInput, FontSelect, TileColorPicker, FontAwesomeIcon },
+                  NumberInput, FontSelect, TileColorPicker, FontAwesomeIcon,
+                  FileUploader },
 
     data() {
         return {
@@ -217,6 +232,9 @@ export default {
 
             // Current user's avatar
             avatarUrl: 'https://agube.lu/generator/api/avatars/noone.png',
+            // Custom avatar data URL
+            customAvatarUrl: '',
+            customAvatar: null,
 
             // Holds all raw values from the form
             generatorFormData: {
@@ -273,6 +291,21 @@ export default {
     },
     
     computed: {
+        avatarUploadText: function() {
+            let avatar = this.customAvatar;
+            if(avatar === null) {
+                return "Click to upload";
+            } else {
+                return avatar.name;
+            }
+        },
+
+        // Returns the text for the custom avatar upload button
+        avatarUploadButtonText: function() {
+            return this.customAvatar === null ?
+                    "Upload your avatar" : "Reset custom avatar";
+        },
+
         // Returns always a valid avatar border template
         templateAvatarBorder: function() {
             let shape = this.generatorFormData.avatarShape;
@@ -316,10 +349,34 @@ export default {
                 this.generatorFormData.colorForeground = themeDefaults[newVal].foreground,
                 this.generatorFormData.colorBarBorder = themeDefaults[newVal].barBorder,
                 this.generatorFormData.colorFont = themeDefaults[newVal].font
-        }
+        },
+
+        customAvatar: function(avatar) {
+            if(avatar === null) {
+                this.customAvatarUrl = "";
+            } else {
+                let reader = new FileReader();
+
+                reader.addEventListener('load', () => {
+                    this.customAvatarUrl = reader.result;
+                });
+
+                reader.readAsDataURL(avatar);
+            }
+        },
     },
 
     methods: {
+        onFileSelectorClicked() {
+            if(this.customAvatar !== null) {
+                this.customAvatar = null;
+            }
+        },
+
+        onFileSelected(file) {
+            this.customAvatar = file;
+        },
+
         onLoadMoreFonts() {
             if(!confirm(this.loadMoreFontsAlertMsg)) return;
             
