@@ -2,9 +2,14 @@
     <div class="tile is-child box trigger"
          :id="componentId"
          :style="{ 'background-color': `rgb(${value.r},${value.g},${value.b})` }">
-        <p class="subtitle is-4" :style="{ 'color': fontColor }">
-            {{ text }}
-        </p>
+
+        <div class="level">
+            <div class="level-item has-text centered">
+                 <p class="subtitle is-4" :style="{ 'color': fontColor }">
+                    {{ text }}
+                </p>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -119,5 +124,9 @@ export default {
          -moz-user-select: none;
           -ms-user-select: none;
               user-select: none;
+}
+
+.trigger .level {
+    height: 100%;
 }
 </style>

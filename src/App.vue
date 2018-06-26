@@ -48,10 +48,14 @@
                     </div>
                     
                     <!-- Text to print -->
-                    <text-input v-model="generatorFormData.text"
-                                label="Text to print:"
-                                iconleft="pencil-alt" 
-                                placeholder="Leave blank to print your username" />
+                    <div class="columns">
+                        <div class="column">
+                            <text-input v-model="generatorFormData.text"
+                                        label="Text to print:"
+                                        iconleft="pencil-alt" 
+                                        placeholder="Leave blank to print your username" />
+                        </div>
+                    </div>
 
                     <!-- Flag style and country -->
                     <div class="columns" id="country-div">
@@ -167,9 +171,7 @@
             <div class="is-divider"></div>
 
             <div id="columns-download" class="columns">
-                <div class="column"></div>
-
-                <div class="column">
+                <div class="column is-one-third is-offset-one-third">
                     <a id="button-download"
                        class="button is-link is-large"
                        @click="onDirectDownload">
@@ -179,8 +181,6 @@
                         <span>Download</span>
                     </a>
                 </div>
-
-                <div class="column"></div>
             </div>
 
         <!-- Close form-container -->
@@ -480,8 +480,20 @@ body {
     flex: 1;
 }
 
-#country-div .column {
-    padding-bottom: 0;
+#form-container .columns, #form-container .column {
+    margin-bottom: 0;
+}
+
+.is-divider {
+    padding: 0;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.is-divider-vertical {
+    padding: 0;
+    margin-right: 20px;
+    margin-left: 20px;
 }
 
 .title {
@@ -491,10 +503,6 @@ body {
 
 .is-ancestor {
     height: 100%;
-}
-
-#column-right {
-    padding-bottom: 0;
 }
 
 #columns-download a {
