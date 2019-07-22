@@ -3,8 +3,6 @@
         <div class="columns">
             <div class="column">
                 <p>
-                    <font-awesome-icon :icon="['fab', 'twitter']" /> <a href="https://twitter.com/agubelu" target="_blank">Twitter</a>
-                    &nbsp;|&nbsp;
                     <font-awesome-icon icon="envelope" /> <a href="https://osu.ppy.sh/forum/ucp.php?i=pm&mode=compose&u=4780236" target="_blank">Contact me</a>
                 </p>
             </div>
