@@ -8,7 +8,7 @@
             </div>
             <div class="column">
                 <div class="content has-text-centered">
-                    <p>Made with ❤️ by agubelu</p>
+                    <p>Made with ❤️ by <a href="https://osu.ppy.sh/u/agubelu" target="_blank">agubelu</a></p>
                 </div>
             </div>
             <div class="column">
